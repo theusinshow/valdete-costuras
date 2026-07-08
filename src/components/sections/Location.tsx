@@ -40,12 +40,27 @@ export function Location() {
         </div>
 
         <Reveal delay={120}>
-          {/* Map embed placeholder — add real Google Maps embed once address is set (CNT-002). */}
-          <div className="flex aspect-[4/3] items-center justify-center rounded-[var(--radius-lg)] border border-dashed border-border bg-surface/60">
-            <span className="text-xs font-medium uppercase tracking-[0.08em] text-text-muted">
-              Mapa em breve
-            </span>
-          </div>
+          <figure className="overflow-hidden rounded-[var(--radius-lg)] border border-border">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/fachada.webp"
+              alt="Fachada da loja Valdete Costuras em Palhoça - SC"
+              loading="lazy"
+              className="aspect-[4/3] w-full object-cover"
+            />
+            {site.location.mapsUrl && (
+              <figcaption className="border-t border-border bg-surface/60 px-4 py-3 text-center text-sm">
+                <a
+                  href={site.location.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-accent-strong hover:underline"
+                >
+                  Ver no mapa
+                </a>
+              </figcaption>
+            )}
+          </figure>
         </Reveal>
       </div>
     </Section>
