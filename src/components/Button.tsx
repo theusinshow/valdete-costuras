@@ -65,7 +65,7 @@ export function Button({
 }: Props) {
   const isDisabled = disabled || loading;
 
-  const classes = `group/btn relative inline-flex items-center justify-center gap-2 rounded-[var(--radius)] font-semibold tracking-tight transition-[background-color,border-color,color,transform] duration-150 hover:-translate-y-px focus-visible:outline-2 motion-reduce:hover:translate-y-0 ${
+  const classes = `group/btn relative inline-flex items-center justify-center gap-2 rounded-[var(--radius)] font-semibold tracking-tight transition-[background-color,border-color,color,transform] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px active:translate-y-0 active:scale-[0.98] focus-visible:outline-2 motion-reduce:hover:translate-y-0 motion-reduce:active:scale-100 ${
     variants[variant]
   } ${sizes[size]} ${
     isDisabled ? "pointer-events-none opacity-55 grayscale-[0.15]" : ""
@@ -76,7 +76,7 @@ export function Button({
       {loading && <SpinnerIcon className="animate-spin motion-reduce:animate-none" />}
       {children}
       {iconRight && (
-        <span className="transition-transform duration-150 group-hover/btn:translate-x-0.5 motion-reduce:transition-none">
+        <span className="-translate-x-0.5 opacity-70 transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/btn:translate-x-0.5 group-hover/btn:opacity-100 motion-reduce:translate-x-0 motion-reduce:opacity-100 motion-reduce:transition-none">
           {iconRight}
         </span>
       )}

@@ -29,7 +29,7 @@ const alexBrush = Alex_Brush({
 export const metadata: Metadata = {
   title: `${site.name} — Ajustes e consertos de roupa`,
   description:
-    "Ajustes e consertos de roupa em [BAIRRO/CIDADE], rápido e bem feito. Bainha, zíper, ajuste de peças e uniformes para empresas. Fale no WhatsApp.",
+    "Ajustes e consertos de roupa em Palhoça - SC, rápido e bem feito. Bainha, zíper, ajuste de peças e uniformes para empresas. Fale no WhatsApp.",
   icons: {
     icon: [
       { url: "/icon.svg", type: "image/svg+xml" },

@@ -6,16 +6,16 @@
 
 export const site = {
   name: "Valdete Costuras",
-  slogan: "[SLOGAN]", // optional brand line — CNT-008
+  slogan: "Sua roupa no ponto certo.", // CNT-008
   // WhatsApp number in international format, digits only: 55DDNNNNNNNNN — CNT-001
-  whatsapp: "[WHATSAPP]",
+  whatsapp: "5548988106584",
   location: {
-    neighborhoodCity: "[BAIRRO/CIDADE]", // CNT-002
-    address: "[ENDERECO]", // CNT-002
-    hours: "[HORARIO]", // CNT-003
+    neighborhoodCity: "Palhoça - SC", // CNT-002
+    address: "R. Pref. Reinoldo Alves, 1348 - Palhoça/SC", // CNT-002
+    hours: "Seg a Sex, 08:00 às 12:00 e 13:30 às 18:00", // CNT-003
     mapsUrl: "", // optional Google Maps link/embed
   },
-  yearsExperience: "[ANOS]", // CNT-004
+  yearsExperience: "+30", // CNT-004
   // Hero image — CNT-009. Drop a real atelier photo at /public/hero-atelie.jpg and
   // set this to "/hero-atelie.jpg" (a real photo of Valdete / hands / the atelier
   // beats stock). Null = show the stitched monogram fallback panel.
@@ -30,29 +30,60 @@ export const nav = [
 ] as const;
 
 export const hero = {
-  eyebrow: "Ateliê de costura",
   title: "Ajustes e consertos de roupa, rápido e bem feito",
   subtitle:
-    "Em [BAIRRO/CIDADE]. [ANOS] anos de experiência em costura, com atendimento próximo e preço justo.",
+    "Em Palhoça - SC, +30 anos de experiência em costura, com atendimento próximo e preço justo.",
   ctaLabel: "Falar no WhatsApp",
   reassurance: "Atendimento pessoal · orçamento na hora",
 } as const;
 
 // Primary offer — alterations & repairs (CNT-005: confirm real services)
+// image: drop the downloaded photo at /public/servicos/<file> — until it exists,
+// the Services section shows a graceful placeholder (no broken image). CNT-010.
 export const services = [
-  { title: "Bainhas", short: "Calças, saias e vestidos no comprimento certo." },
-  { title: "Ajuste de peças", short: "Apertar, alargar e ajustar ao corpo." },
-  { title: "Troca de zíper", short: "Zíper novo em calças, jaquetas e vestidos." },
-  { title: "Consertos", short: "Rasgos, costuras soltas e reparos em geral." },
-  { title: "Botões e barras", short: "Pregar botões, refazer barras e acabamentos." },
-  { title: "Reformas", short: "Transformar e renovar peças que você gosta." },
+  {
+    title: "Bainhas",
+    short: "Calças, saias e vestidos no comprimento certo.",
+    image: "/servicos/bainhas.avif",
+    alt: "Barra de calça sendo ajustada na máquina de costura",
+  },
+  {
+    title: "Ajuste de peças",
+    short: "Apertar, alargar e ajustar ao corpo.",
+    image: "/servicos/ajuste-de-pecas.webp",
+    alt: "Peça de roupa marcada com alfinetes para ajuste ao corpo",
+  },
+  {
+    title: "Troca de zíper",
+    short: "Zíper novo em calças, jaquetas e vestidos.",
+    image: "/servicos/troca-de-ziper.webp",
+    alt: "Zíper novo sendo costurado em uma peça de roupa",
+  },
+  {
+    title: "Consertos",
+    short: "Rasgos, costuras soltas e reparos em geral.",
+    image: "/servicos/consertos.webp",
+    alt: "Conserto de costura em tecido na máquina",
+  },
+  {
+    title: "Botões e barras",
+    short: "Pregar botões, refazer barras e acabamentos.",
+    image: "/servicos/botoes-e-barras.webp",
+    alt: "Botão sendo pregado à mão em uma camisa",
+  },
+  {
+    title: "Reformas",
+    short: "Transformar e renovar peças que você gosta.",
+    image: "/servicos/reformas.webp",
+    alt: "Peça de roupa sendo reformada no ateliê de costura",
+  },
 ] as const;
 
 // 4 trust pillars (the differentiators — DEC-005)
 export const pillars = [
   {
     title: "Experiência",
-    short: "[ANOS] anos costurando, com técnica e cuidado em cada peça.",
+    short: "+30 anos costurando, com técnica e cuidado em cada peça.",
   },
   {
     title: "Rapidez",
@@ -88,7 +119,6 @@ export const howItWorks = [
 
 // Secondary offer — uniforms / companies (B2B)
 export const companies = {
-  eyebrow: "Para empresas",
   title: "Uniformes e costura para o seu negócio",
   short:
     "Produção, ajustes e conserto de uniformes em volume, com padrão e prazo confiáveis.",
@@ -106,6 +136,5 @@ export const finalCta = {
   ctaLabel: "Falar no WhatsApp",
 } as const;
 
-// Empty until real content arrives (CNT-006 / CNT-007) — render "em breve".
-export const gallery: { src: string; alt: string }[] = [];
+// Empty until real content arrives (CNT-007) — render "em breve".
 export const testimonials: { quote: string; author: string }[] = [];
