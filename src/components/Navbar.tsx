@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { nav, site } from "@/lib/content";
 import { WhatsAppButton } from "./WhatsAppButton";
+import { Wordmark } from "./Logo";
 
 export function Navbar() {
   return (
@@ -8,14 +9,11 @@ export function Navbar() {
       <div className="container-page flex h-16 items-center justify-between">
         <Link
           href="#top"
-          className="text-lg font-bold tracking-tight text-text"
+          className="text-accent transition-opacity hover:opacity-80"
           aria-label={`${site.name} — início`}
         >
-          {/* Typographic wordmark — swap for logo SVG when finalized (CNT-006). */}
-          Valdete<span className="text-accent">.</span>
-          <span className="ml-1 hidden font-sans text-sm font-medium tracking-normal text-text-muted sm:inline">
-            Costuras
-          </span>
+          {/* Brand signature — dotted "V" monogram + script wordmark. */}
+          <Wordmark scriptSize={26} layout="inline" className="translate-y-px" />
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex" aria-label="Seções">

@@ -62,6 +62,15 @@
 **Decision:** From `/impeccable audit`: removed repeated uppercase section kickers (kept one in hero), rebuilt Services as an editorial hairline list (no identical card grid, no icon tiles, dropped cliché scissors/needle/ruler icons), rebuilt How-it-works as connected numbered steps (no boxes), de-numbered Pillars, varied section vertical rhythm, removed em dash from copy, reworded generic headings.
 **Impact:** Lower "AI-made" signal. Hero image slot added (see CNT-009).
 
+## DEC-014 — Adopt the official brand manual (identidade visual)
+**Status:** Approved (developer request, 2026-07-07)
+**Decision:** A finalized professional brand manual now exists in `identidade_visual/` (brandbook HTML/PDF + logo SVG set). The site is realigned to it, superseding the earlier synthetic "Costura Moderna" direction (DEC-007/010/011) and the type pair from DEC-012.
+- **Palette (brand manual):** Linho `#FBF6F2` (bg), Areia `#F0E7E0`→ token `#F4ECE4` (muted, lightened for hairline contrast), Carvão `#2C2523` (text), Grafite `#6E625E` (muted text), Vermelho Valdete `#C4302E` (accent/CTA, white foreground ~5.2:1), plus Coral `#E4807D` / Rosé `#F6A6A2` as decorative-only support (never text).
+- **Type:** Cormorant Garamond (display) · Jost (body/UI) · Alex Brush (script — **logo signature only**, never body/titles).
+- **Logo:** Real assets copied to `public/brand/`. Reusable `Monogram` + `Wordmark` components (currentColor) built from the manual's dotted-"V" + script "Valdete" + tracked "Costuras". Applied to Navbar, Footer, Hero seal, final CTA. Supersedes the typographic-dot wordmark of DEC-006/010.
+- **Graphic elements:** Dotted-circle monogram, traço-costura (dashed hairline) as eyebrow/divider detail, rosé radial glow on hero — per manual "Elementos gráficos".
+**Impact:** `globals.css` tokens, `layout.tsx` fonts + favicon/OG, `Logo.tsx`, Navbar/Footer/Hero/FinalCta/SectionHeader. Accessibility re-checked (AA). DESIGN_SYSTEM.md updated. CNT-006 (logo) resolved.
+
 ## DEC-009 — Tech stack: Next.js + Tailwind
 **Status:** Approved
 **Decision:** Next.js (App Router) + Tailwind + TypeScript. Slight overkill for one page; chosen for SEO, image handling, future growth.

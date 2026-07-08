@@ -1,16 +1,17 @@
 import { site, nav } from "@/lib/content";
 import { whatsappUrl, waMessages } from "@/lib/whatsapp";
 import { MapPinIcon, ClockIcon } from "./icons";
+import { Wordmark } from "./Logo";
 
 export function Footer() {
   return (
     <footer className="border-t border-border bg-surface-muted">
       <div className="container-page grid gap-10 py-14 md:grid-cols-3">
         <div>
-          <p className="text-lg font-bold tracking-tight text-text">
-            Valdete<span className="text-accent">.</span> Costuras
-          </p>
-          <p className="mt-3 max-w-xs text-sm leading-relaxed text-text-muted">
+          <div className="text-accent">
+            <Wordmark scriptSize={34} />
+          </div>
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-text-muted">
             Ajustes, consertos e uniformes com atendimento próximo e preço justo.
           </p>
         </div>

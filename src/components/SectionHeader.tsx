@@ -19,7 +19,11 @@ export function SectionHeader({
   return (
     <Reveal className={`flex max-w-2xl flex-col ${alignClass}`}>
       {eyebrow && (
-        <span className="text-xs font-semibold uppercase tracking-[0.08em] text-accent-strong">
+        <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-accent-strong">
+          <span
+            aria-hidden
+            className="h-px w-6 border-t border-dashed border-accent"
+          />
           {eyebrow}
         </span>
       )}

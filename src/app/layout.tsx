@@ -1,19 +1,28 @@
 import type { Metadata } from "next";
-import { Petrona, Hanken_Grotesk } from "next/font/google";
+import { Cormorant_Garamond, Jost, Alex_Brush } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/content";
 
-const petrona = Petrona({
-  variable: "--font-petrona",
+// Brand type system (identidade_visual manual):
+// Cormorant Garamond → títulos · Jost → texto/UI · Alex Brush → assinatura (logo)
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const hanken = Hanken_Grotesk({
-  variable: "--font-hanken",
+const jost = Jost({
+  variable: "--font-jost",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600"],
+  display: "swap",
+});
+
+const alexBrush = Alex_Brush({
+  variable: "--font-alex-brush",
+  subsets: ["latin"],
+  weight: ["400"],
   display: "swap",
 });
 
@@ -21,12 +30,20 @@ export const metadata: Metadata = {
   title: `${site.name} — Ajustes e consertos de roupa`,
   description:
     "Ajustes e consertos de roupa em [BAIRRO/CIDADE], rápido e bem feito. Bainha, zíper, ajuste de peças e uniformes para empresas. Fale no WhatsApp.",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/brand/favicon.png",
+  },
   openGraph: {
     title: `${site.name} — Ajustes e consertos de roupa`,
     description:
       "Ajustes e consertos de roupa, rápido e bem feito. Fale no WhatsApp.",
     type: "website",
     locale: "pt_BR",
+    images: [{ url: "/brand/logo-principal-fundo-vermelho.png" }],
   },
 };
 
@@ -38,7 +55,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${petrona.variable} ${hanken.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${jost.variable} ${alexBrush.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

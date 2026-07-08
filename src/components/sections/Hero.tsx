@@ -1,6 +1,7 @@
 import { hero, site } from "@/lib/content";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { Reveal } from "@/components/Reveal";
+import { Monogram, Wordmark } from "@/components/Logo";
 
 const trust = [
   "Muitos ajustes no mesmo dia",
@@ -11,13 +12,22 @@ const trust = [
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden border-b border-border">
+      {/* warm rosé glow, radiating from the corner (manual cover treatment) */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(120% 80% at 88% -10%, color-mix(in srgb, var(--color-rose) 32%, transparent), transparent 55%)",
+        }}
+      />
       {/* subtle diagonal stitch texture, decorative */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.035]"
+        className="pointer-events-none absolute inset-0 opacity-[0.05]"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(135deg, var(--color-text) 0 1px, transparent 1px 22px)",
+            "repeating-linear-gradient(135deg, var(--color-accent) 0 1px, transparent 1px 22px)",
         }}
       />
       <div className="container-page relative grid min-h-[86vh] items-center gap-12 py-20 md:py-24 lg:grid-cols-[1.15fr_0.85fr]">
@@ -74,8 +84,8 @@ export function Hero() {
                 className="h-full w-full object-cover"
               />
               <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-border bg-bg/70 px-6 py-4 backdrop-blur-sm">
-                <span className="font-display text-sm font-semibold tracking-tight">
-                  Valdete<span className="text-accent">.</span> Costuras
+                <span className="text-accent">
+                  <Wordmark scriptSize={22} layout="inline" withMonogram={false} />
                 </span>
                 <span className="text-xs text-text-muted">
                   {site.yearsExperience} anos de ofício
@@ -83,43 +93,37 @@ export function Hero() {
               </div>
             </div>
           ) : (
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-lg)] border border-border bg-surface">
+          <div className="relative flex aspect-[4/5] flex-col items-center justify-center overflow-hidden rounded-[var(--radius-lg)] border border-border bg-surface">
+            {/* rosé glow + stitch texture */}
             <div
               aria-hidden
-              className="absolute inset-0 opacity-[0.04]"
+              className="absolute inset-0"
               style={{
-                backgroundImage:
-                  "repeating-linear-gradient(45deg, var(--color-text) 0 1px, transparent 1px 16px)",
+                background:
+                  "radial-gradient(110% 70% at 50% 0%, color-mix(in srgb, var(--color-rose) 26%, transparent), transparent 60%)",
               }}
             />
-            <svg
-              viewBox="0 0 200 250"
-              className="absolute inset-0 h-full w-full"
-              fill="none"
-              aria-hidden="true"
-            >
-              {/* thread */}
-              <path
-                d="M60 60 C 90 90, 110 90, 140 60"
-                stroke="var(--color-text)"
-                strokeWidth="1"
-                strokeDasharray="4 5"
-                opacity="0.35"
-              />
-              {/* V monogram */}
-              <path
-                d="M64 66 L100 176 L136 66"
-                stroke="var(--color-text)"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              {/* needle eye accent */}
-              <circle cx="100" cy="196" r="4" fill="var(--color-accent)" />
-            </svg>
+            <div
+              aria-hidden
+              className="absolute inset-0 opacity-[0.05]"
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(45deg, var(--color-accent) 0 1px, transparent 1px 16px)",
+              }}
+            />
+            {/* Brand seal — dotted "V" monogram + script signature */}
+            <div className="relative flex flex-col items-center text-accent">
+              <Monogram size={128} />
+              <div className="mt-7">
+                <Wordmark withMonogram={false} scriptSize={46} className="items-center" />
+              </div>
+              <span className="mt-6 text-[0.65rem] font-medium uppercase tracking-[0.28em] text-text-muted">
+                Feito à mão
+              </span>
+            </div>
             <div className="absolute inset-x-0 bottom-0 flex items-center justify-between border-t border-border bg-bg/60 px-6 py-4 backdrop-blur-sm">
-              <span className="font-display text-sm font-semibold tracking-tight">
-                Valdete<span className="text-accent">.</span> Costuras
+              <span className="text-accent">
+                <Wordmark scriptSize={22} layout="inline" withMonogram={false} />
               </span>
               <span className="text-xs text-text-muted">
                 {site.yearsExperience} anos de ofício

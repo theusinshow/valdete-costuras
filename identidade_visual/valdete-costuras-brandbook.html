@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valdete Costuras — Manual de Marca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red-1:#C4302E;
+    --red-2:#CF5654;
+    --red-3:#E4807D;
+    --red-4:#F6A6A2;
+    --linho:#FBF6F2;
+    --areia:#F0E7E0;
+    --carvao:#2C2523;
+    --grafite:#6E625E;
+    --branco:#FFFFFF;
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --sans:'Jost', 'Segoe UI', sans-serif;
+    --script:'Alex Brush', cursive;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  html{background:#d9d2cc;}
+  body{font-family:var(--sans);color:var(--carvao);font-weight:300;line-height:1.6;}
+  .page{position:relative;width:210mm;min-height:297mm;margin:0 auto;background:var(--linho);padding:22mm 20mm;overflow:hidden;display:flex;flex-direction:column;}
+  @media screen{.page{margin:14px auto;box-shadow:0 10px 40px rgba(0,0,0,.18);}}
+  .kicker{font-family:var(--sans);font-weight:500;font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--red-1);}
+  h1.section{font-family:var(--serif);font-weight:500;font-size:46px;line-height:1.05;letter-spacing:-.5px;margin:6px 0 4px;}
+  h2{font-family:var(--serif);font-weight:600;font-size:24px;letter-spacing:-.2px;margin-bottom:8px;color:var(--carvao);}
+  h3{font-family:var(--sans);font-weight:500;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--red-1);margin-bottom:10px;}
+  p{font-size:13.5px;color:var(--grafite);max-width:60ch;}
+  p strong{color:var(--carvao);font-weight:500;}
+  .lead{font-family:var(--serif);font-size:20px;font-weight:400;line-height:1.5;color:var(--carvao);font-style:italic;max-width:52ch;}
+  .rule{height:1px;background:linear-gradient(90deg,var(--red-3),transparent);border:0;margin:14px 0 22px;}
+  .num{position:absolute;top:16mm;right:20mm;font-family:var(--serif);font-size:13px;color:var(--red-3);letter-spacing:.1em;}
+  .foot{margin-top:auto;padding-top:14px;display:flex;justify-content:space-between;align-items:center;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--grafite);border-top:1px solid var(--areia);}
+  .foot .dashes{color:var(--red-3);letter-spacing:.3em;}
+  .wordmark{font-family:var(--script);color:var(--red-1);line-height:.9;}
+  .costuras{font-family:var(--sans);font-weight:400;letter-spacing:.42em;text-transform:uppercase;color:var(--red-1);display:flex;align-items:center;justify-content:center;gap:10px;}
+  .costuras::before,.costuras::after{content:"– – –";letter-spacing:.05em;font-weight:300;}
+  .monogram{display:inline-flex;align-items:center;justify-content:center;position:relative;}
+  .monogram svg{display:block;}
+  .cover{background:radial-gradient(120% 80% at 50% -10%, rgba(244,166,162,.28), transparent 60%),var(--linho);justify-content:center;align-items:center;text-align:center;}
+  .cover .frame{position:absolute;inset:14mm;border:1px solid var(--red-4);}
+  .cover .frame::before,.cover .frame::after{content:"";position:absolute;width:10px;height:10px;border:1px solid var(--red-2);}
+  .cover .frame::before{top:-5px;left:-5px;border-right:0;border-bottom:0;}
+  .cover .frame::after{bottom:-5px;right:-5px;border-left:0;border-top:0;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .card{background:var(--branco);border:1px solid var(--areia);border-radius:4px;padding:20px;}
+  .swatch{border-radius:4px;overflow:hidden;border:1px solid rgba(0,0,0,.06);}
+  .swatch .chip{height:96px;}
+  .swatch .info{padding:12px 14px;background:var(--branco);}
+  .swatch .name{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--carvao);}
+  .swatch .code{font-size:10.5px;color:var(--grafite);letter-spacing:.04em;margin-top:3px;line-height:1.7;}
+  .tag{display:inline-block;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--red-3);color:var(--red-1);border-radius:20px;margin:0 6px 6px 0;}
+  .ok{color:#2f7a4d;} .no{color:var(--red-1);}
+  .idx{display:flex;align-items:baseline;font-family:var(--serif);font-size:15px;color:var(--carvao);padding:7px 0;border-bottom:1px solid var(--areia);}
+  .idx span:first-child{color:var(--red-1);font-size:12px;font-family:var(--sans);font-weight:500;width:26px;}
+  .idx .pg{margin-left:auto;color:var(--red-3);font-size:12px;}
+  @media print{html{background:#fff;} .page{margin:0;box-shadow:none;page-break-after:always;} @page{size:A4;margin:0;}}
+</style>
+</head>
+<body>
+
+<!-- 1 CAPA -->
+<section class="page cover">
+  <div class="frame"></div>
+  <div class="monogram" style="margin-bottom:6px;">
+    <svg width="150" height="150" viewBox="0 0 150 150">
+      <circle cx="75" cy="75" r="60" fill="none" stroke="#C4302E" stroke-width="1.6" stroke-dasharray="7 6" stroke-linecap="round"/>
+      <path d="M332 -71Q327 -71 327 -61Q327 -28 383 107Q400 146 417.0 185.0Q434 224 450 263L496 398Q507 432 513.5 456.5Q520 481 520 497Q520 567 480.0 602.5Q440 638 374 638Q312 638 251.5 610.5Q191 583 141.5 536.0Q92 489 62 431Q19 349 19 281Q19 234 42.0 196.0Q65 158 102 144Q128 135 153 135Q188 135 218.0 150.5Q248 166 266.5 194.0Q285 222 285 257Q285 261 285.0 265.5Q285 270 284 274Q280 286 290 286Q301 286 302 270Q303 266 303.5 262.0Q304 258 304 253Q304 217 280.0 186.0Q256 155 218.5 135.5Q181 116 141 116Q100 116 62 136Q-19 180 -19 289Q-19 367 23 440Q61 506 122.0 555.0Q183 604 256.0 631.5Q329 659 401 659Q451 659 491.0 643.5Q531 628 554.5 596.5Q578 565 578 516Q578 423 494 237Q398 26 398 0Q398 -7 403 -5Q429 12 638 263Q745 391 819.5 470.5Q894 550 937 581Q975 610 1003.0 628.5Q1031 647 1048 657Q1110 691 1162 691Q1185 691 1197.5 686.5Q1210 682 1210 662Q1210 649 1201 649Q1198 649 1187.0 653.5Q1176 658 1165 658Q1112 658 1054 627Q938 565 788 405Q745 359 687.5 291.0Q630 223 558 132Q444 -12 421 -25Q378 -50 356.5 -60.5Q335 -71 332 -71Z" transform="translate(75,75) scale(0.06021,-0.06021) translate(-595.50,-310.00)" fill="#C4302E"/>
+    </svg>
+  </div>
+  <div class="wordmark" style="font-size:104px;">Valdete</div>
+  <div class="costuras" style="font-size:15px;margin-top:2px;">Costuras</div>
+  <div style="margin-top:46px;" class="kicker">Manual de Identidade Visual</div>
+  <p style="max-width:34ch;margin-top:12px;text-align:center;font-size:12px;">Diretrizes de marca, uso do logo, cores e tipografia. Costura, ajustes e reformas feitos com carinho.</p>
+  <div style="position:absolute;bottom:16mm;left:0;right:0;text-align:center;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--grafite);">Edição 01 · 2026 &nbsp;·&nbsp; <span style="color:var(--red-2)">– – –</span></div>
+</section>
+
+<!-- 2 SUMARIO -->
+<section class="page">
+  <div class="num">02</div>
+  <span class="kicker">O guia</span>
+  <h1 class="section">Um sistema<br>para uma marca<br>feita à mão.</h1>
+  <hr class="rule">
+  <p style="margin-bottom:26px;">Este manual reúne tudo o que dá vida à identidade da <strong>Valdete Costuras</strong>. Ele existe para que a marca seja sempre reconhecida da mesma forma — no ateliê, na etiqueta de uma peça, num cartão ou no site. Consistência é o que transforma um negócio de bairro em uma marca de confiança.</p>
+  <div class="grid2" style="gap:8px 40px;">
+    <div>
+      <div class="idx"><span>01</span> A essência da marca <span class="pg">03</span></div>
+      <div class="idx"><span>02</span> Personalidade &amp; tom de voz <span class="pg">04</span></div>
+      <div class="idx"><span>03</span> A quem falamos <span class="pg">05</span></div>
+    </div>
+    <div>
+      <div class="idx"><span>04</span> O logo &amp; suas assinaturas <span class="pg">06</span></div>
+      <div class="idx"><span>05</span> Proteção &amp; usos indevidos <span class="pg">07</span></div>
+      <div class="idx"><span>06</span> Cores <span class="pg">08</span></div>
+    </div>
+    <div>
+      <div class="idx"><span>07</span> Tipografia <span class="pg">09</span></div>
+    </div>
+    <div>
+      <div class="idx"><span>08</span> Elementos gráficos <span class="pg">10</span></div>
+      <div class="idx"><span>09</span> Aplicações <span class="pg">11</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>Valdete Costuras</span><span class="dashes">– – –</span><span>Manual de Marca</span></div>
+</section>
+
+<!-- 3 ESSENCIA -->
+<section class="page">
+  <div class="num">03</div>
+  <span class="kicker">01 · A essência</span>
+  <h1 class="section">A essência da marca</h1>
+  <hr class="rule">
+  <p class="lead" style="margin-bottom:26px;">“Cada ponto carrega cuidado. A gente não conserta roupa — a gente devolve peças à vida.”</p>
+  <div class="grid2" style="gap:18px;">
+    <div class="card"><h3>Propósito</h3><p>Prolongar a vida das roupas que as pessoas amam, com um serviço próximo, honesto e bem-feito — valorizando o trabalho artesanal da costura.</p></div>
+    <div class="card"><h3>Missão</h3><p>Oferecer ajustes, consertos e reformas com acabamento impecável e prazo cumprido, de forma que cada cliente saia com a sensação de peça nova.</p></div>
+    <div class="card"><h3>Visão</h3><p>Ser o ateliê de costura de referência da região — reconhecido pela qualidade, pela confiança e pelo atendimento acolhedor.</p></div>
+    <div class="card"><h3>Valores</h3><p><strong>Cuidado</strong> em cada detalhe · <strong>Confiança</strong> no prazo e no preço · <strong>Capricho</strong> no acabamento · <strong>Acolhimento</strong> de quem chega.</p></div>
+  </div>
+  <div class="foot"><span>Valdete Costuras</span><span class="dashes">– – –</span><span>A essência</span></div>
+</section>
+
+<!-- 4 PERSONALIDADE -->
+<section class="page">
+  <div class="num">04</div>
+  <span class="kicker">02 · Personalidade</span>
+  <h1 class="section">Personalidade &amp; tom de voz</h1>
+  <hr class="rule">
+  <p style="margin-bottom:18px;">A Valdete Costuras é <strong>acolhedora e artesanal</strong>. Fala como uma pessoa experiente que recebe você em casa: com calma, atenção e um toque de carinho. Nunca soa corporativa, distante ou técnica demais.</p>
+  <div class="grid2" style="gap:22px;align-items:start;">
+    <div><h3>Atributos</h3>
+      <span class="tag">Acolhedora</span><span class="tag">Artesanal</span><span class="tag">Confiável</span>
+      <span class="tag">Caprichosa</span><span class="tag">Próxima</span><span class="tag">Delicada</span></div>
+    <div><h3>A voz em uma frase</h3><p class="lead" style="font-size:17px;">Calorosa, simples e caprichosa — como quem entende de roupa e gosta de gente.</p></div>
+  </div>
+  <div class="grid2" style="gap:22px;margin-top:24px;">
+    <div class="card" style="border-top:3px solid #2f7a4d;"><h3 style="color:#2f7a4d;">A gente fala assim ✓</h3><p style="line-height:1.9;">“Traz a peça que a gente resolve pra você.”<br>“Fica pronto na sexta, sem correria.”<br>“Ajuste na medida certa, do seu jeito.”</p></div>
+    <div class="card" style="border-top:3px solid var(--red-1);"><h3>A gente evita ✗</h3><p style="line-height:1.9;">“Solicite seu orçamento no formulário.”<br>“Serviços têxteis com excelência premium.”<br>Gírias em excesso, promessas exageradas.</p></div>
+  </div>
+  <div class="foot"><span>Valdete Costuras</span><span class="dashes">– – –</span><span>Personalidade</span></div>
+</section>
+
+<!-- 5 PUBLICO -->
+<section class="page">
+  <div class="num">05</div>
+  <span class="kicker">03 · A quem falamos</span>
+  <h1 class="section">A quem falamos</h1>
+  <hr class="rule">
+  <p style="margin-bottom:24px;">Entender quem procura a Valdete ajuda a manter o tom certo em cada mensagem. Três perfis principais:</p>
+  <div class="grid3">
+    <div class="card"><h2 style="font-size:20px;color:var(--red-1);">A prática</h2><p>Precisa de ajustes do dia a dia — bainha, cintura, zíper. Valoriza <strong>rapidez, preço justo e prazo cumprido</strong>.</p></div>
+    <div class="card"><h2 style="font-size:20px;color:var(--red-1);">A sentimental</h2><p>Quer <strong>reformar</strong> uma peça com valor afetivo ou herdada. Busca cuidado e uma costureira em quem confiar.</p></div>
+    <div class="card"><h2 style="font-size:20px;color:var(--red-1);">A ocasião</h2><p>Tem um evento à vista e precisa da roupa <strong>caindo perfeita</strong>. Valoriza acabamento e atenção aos detalhes.</p></div>
+  </div>
+  <div style="margin-top:26px;" class="card"><h3>Posicionamento</h3><p style="max-width:70ch;">Para quem valoriza roupas bem cuidadas, a <strong>Valdete Costuras</strong> é o ateliê de bairro que une o capricho do feito à mão com a confiança de um serviço pontual e honesto — porque cada peça merece durar.</p></div>
+  <div class="foot"><span>Valdete Costuras</span><span class="dashes">– – –</span><span>Público</span></div>
+</section>
+
+<!-- 6 LOGO -->
+<section class="page">
+  <div class="num">06</div>
+  <span class="kicker">04 · Identidade</span>
+  <h1 class="section">O logo &amp; suas assinaturas</h1>
+  <hr class="rule">
+  <p style="margin-bottom:18px;">O logo combina a caligrafia <strong>“Valdete”</strong>, a palavra <strong>“Costuras”</strong> entre traços — que remetem ao ponto de costura — e o <strong>monograma V</strong> dentro de um círculo pontilhado, evocando a linha e a agulha.</p>
+  <div class="grid2" style="gap:20px;">
+    <div class="card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;">
+      <div class="wordmark" style="font-size:60px;">Valdete</div>
+      <div class="costuras" style="font-size:11px;margin-top:2px;">Costuras</div>
+      <div style="margin-top:16px;" class="kicker">Assinatura principal</div>
+    </div>
+    <div class="card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;">
+      <svg width="96" height="96" viewBox="0 0 150 150"><circle cx="75" cy="75" r="60" fill="none" stroke="#C4302E" stroke-width="1.8" stroke-dasharray="7 6" stroke-linecap="round"/><path d="M332 -71Q327 -71 327 -61Q327 -28 383 107Q400 146 417.0 185.0Q434 224 450 263L496 398Q507 432 513.5 456.5Q520 481 520 497Q520 567 480.0 602.5Q440 638 374 638Q312 638 251.5 610.5Q191 583 141.5 536.0Q92 489 62 431Q19 349 19 281Q19 234 42.0 196.0Q65 158 102 144Q128 135 153 135Q188 135 218.0 150.5Q248 166 266.5 194.0Q285 222 285 257Q285 261 285.0 265.5Q285 270 284 274Q280 286 290 286Q301 286 302 270Q303 266 303.5 262.0Q304 258 304 253Q304 217 280.0 186.0Q256 155 218.5 135.5Q181 116 141 116Q100 116 62 136Q-19 180 -19 289Q-19 367 23 440Q61 506 122.0 555.0Q183 604 256.0 631.5Q329 659 401 659Q451 659 491.0 643.5Q531 628 554.5 596.5Q578 565 578 516Q578 423 494 237Q398 26 398 0Q398 -7 403 -5Q429 12 638 263Q745 391 819.5 470.5Q894 550 937 581Q975 610 1003.0 628.5Q1031 647 1048 657Q1110 691 1162 691Q1185 691 1197.5 686.5Q1210 682 1210 662Q1210 649 1201 649Q1198 649 1187.0 653.5Q1176 658 1165 658Q1112 658 1054 627Q938 565 788 405Q745 359 687.5 291.0Q630 223 558 132Q444 -12 421 -25Q378 -50 356.5 -60.5Q335 -71 332 -71Z" transform="translate(75,75) scale(0.06021,-0.06021) translate(-595.50,-310.00)" fill="#C4302E"/></svg>
+      <div style="margin-top:16px;" class="kicker">Símbolo / Monograma</div>
+    </div>
+  </div>
+  <div class="grid3" style="margin-top:20px;">
+    <div class="card" style="background:var(--carvao);display:flex;align-items:center;justify-content:center;padding:26px;"><div style="text-align:center;"><div class="wordmark" style="font-size:38px;color:var(--linho);">Valdete</div><div class="costuras" style="font-size:8px;margin-top:2px;color:var(--red-4);">Costuras</div></div></div>
+    <div class="card" style="background:var(--red-1);display:flex;align-items:center;justify-content:center;padding:26px;"><div style="text-align:center;"><div class="wordmark" style="font-size:38px;color:#fff;">Valdete</div><div class="costuras" style="font-size:8px;margin-top:2px;color:#fff;">Costuras</div></div></div>
+    <div class="card" style="display:flex;align-items:center;justify-content:center;padding:26px;"><div style="text-align:center;"><div class="wordmark" style="font-size:38px;color:var(--carvao);">Valdete</div><div class="costuras" style="font-size:8px;margin-top:2px;color:var(--carvao);">Costuras</div></div></div>
+  </div>
+  <p style="font-size:11px;margin-top:10px;">Versões: <strong>positiva</strong> (vermelho sobre claro), <strong>negativa</strong> (clara sobre escuro/vermelho) e <strong>monocromática</strong> (carvão). Use sempre sobre fundos com contraste suficiente.</p>
+  <div class="foot"><span>Valdete Costuras</span><span class="dashes">– – –</span><span>Logo</span></div>
+</section>
+
+<!-- 7 PROTECAO -->
+<section class="page">
+  <div class="num">07</div>
+  <span class="kicker">05 · Regras de uso</span>
+  <h1 class="section">Proteção &amp; usos indevidos</h1>
+  <hr class="rule">
+  <div class="grid2" style="gap:22px;align-items:start;">
+    <div class="card"><h3>Área de proteção</h3>
+      <div style="display:flex;justify-content:center;padding:6px 0 14px;"><div style="position:relative;padding:26px;border:1px dashed var(--red-3);"><div class="wordmark" style="font-size:40px;">Valdete</div><div class="costuras" style="font-size:8px;">Costuras</div></div></div>
+      <p style="font-size:12px;">Mantenha ao redor do logo um espaço livre mínimo igual à <strong>altura da letra “V”</strong>. Nenhum texto ou elemento deve invadir essa margem.</p></div>
+    <div class="card"><h3>Tamanho mínimo</h3>
+      <div style="display:flex;align-items:flex-end;gap:24px;justify-content:center;padding:14px 0 18px;"><div style="text-align:center;"><div class="wordmark" style="font-size:30px;">Valdete</div><div style="font-size:9px;color:var(--grafite);margin-top:6px;">Digital · 120 px de largura</div></div><div style="text-align:center;"><div class="wordmark" style="font-size:20px;">Valdete</div><div style="font-size:9px;color:var(--grafite);margin-top:6px;">Impresso · 25 mm</div></div></div>
+      <p style="font-size:12px;">Abaixo desses tamanhos a caligrafia perde legibilidade. Em espaços muito pequenos, use apenas o <strong>monograma V</strong>.</p></div>
+  </div>
+  <h3 style="margin-top:24px;">O que nunca fazer</h3>
+  <div class="grid3" style="gap:14px;">
+    <div class="card" style="text-align:center;padding:16px;"><div class="wordmark" style="font-size:30px;transform:rotate(-8deg);color:var(--red-3);">Valdete</div><p style="font-size:10.5px;margin-top:10px;"><span class="no">✗</span> Girar ou inclinar</p></div>
+    <div class="card" style="text-align:center;padding:16px;"><div class="wordmark" style="font-size:30px;transform:scaleX(1.7);color:var(--red-1);">Valdete</div><p style="font-size:10.5px;margin-top:10px;"><span class="no">✗</span> Distorcer proporções</p></div>
+    <div class="card" style="text-align:center;padding:16px;background:#3b5db0;"><div class="wordmark" style="font-size:30px;color:#fff;">Valdete</div><p style="font-size:10.5px;margin-top:10px;color:#fff;"><span style="color:#fff">✗</span> Cores fora da paleta</p></div>
+    <div class="card" style="text-align:center;padding:16px;"><div class="wordmark" style="font-size:30px;color:var(--red-1);text-shadow:2px 3px 0 var(--red-4);">Valdete</div><p style="font-size:10.5px;margin-top:10px;"><span class="no">✗</span> Sombras e efeitos</p></div>
+    <div class="card" style="text-align:center;padding:16px;background:linear-gradient(45deg,#888,#444);"><div class="wordmark" style="font-size:30px;color:#fff;">Valdete</div><p style="font-size:10.5px;margin-top:10px;color:#fff;"><span style="color:#fff">✗</span> Fundo sem contraste</p></div>
+    <div class="card" style="text-align:center;padding:16px;"><div style="font-family:var(--sans);font-weight:600;font-size:26px;color:var(--red-1);">Valdete</div><p style="font-size:10.5px;margin-top:10px;"><span class="no">✗</span> Trocar a tipografia</p></div>
+  </div>
+  <div class="foot"><span>Valdete Costuras</span><span class="dashes">– – –</span><span>Usos indevidos</span></div>
+</section>
+
+<!-- 8 CORES -->
+<section class="page">
+  <div class="num">08</div>
+  <span class="kicker">06 · Cores</span>
+  <h1 class="section">Cores</h1>
+  <hr class="rule">
+  <p style="margin-bottom:20px;">O vermelho é o coração da marca — quente, presente e afetivo, como o carretel de linha. A escala vai do vermelho intenso ao rosé claro, equilibrada por neutros suaves cor de linho.</p>
+  <h3>Paleta principal</h3>
+  <div class="grid2" style="grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px;">
+    <div class="swatch"><div class="chip" style="background:#C4302E;"></div><div class="info"><div class="name">Vermelho Valdete</div><div class="code">HEX #C4302E<br>RGB 196·48·46<br>CMYK 15·95·92·5</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#CF5654;"></div><div class="info"><div class="name">Vermelho Rosé</div><div class="code">HEX #CF5654<br>RGB 207·86·84<br>CMYK 12·77·61·2</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#E4807D;"></div><div class="info"><div class="name">Coral</div><div class="code">HEX #E4807D<br>RGB 228·128·125<br>CMYK 6·58·41·0</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#F6A6A2;"></div><div class="info"><div class="name">Rosé Claro</div><div class="code">HEX #F6A6A2<br>RGB 246·166·162<br>CMYK 1·43·28·0</div></div></div>
+  </div>
+  <h3>Neutros de apoio</h3>
+  <div class="grid2" style="grid-template-columns:repeat(4,1fr);gap:12px;">
+    <div class="swatch"><div class="chip" style="background:#FBF6F2;border-bottom:1px solid #eee;"></div><div class="info"><div class="name">Linho</div><div class="code">HEX #FBF6F2<br>Fundo / papel</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#F0E7E0;"></div><div class="info"><div class="name">Areia</div><div class="code">HEX #F0E7E0<br>Blocos suaves</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#6E625E;"></div><div class="info"><div class="name">Grafite</div><div class="code">HEX #6E625E<br>Texto secundário</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#2C2523;"></div><div class="info"><div class="name">Carvão</div><div class="code">HEX #2C2523<br>Texto principal</div></div></div>
+  </div>
+  <div class="grid2" style="margin-top:22px;gap:18px;">
+    <div class="card"><h3>Proporção de uso</h3>
+      <div style="display:flex;height:22px;border-radius:4px;overflow:hidden;margin-bottom:8px;"><div style="flex:6;background:#FBF6F2;"></div><div style="flex:2.5;background:#C4302E;"></div><div style="flex:0.7;background:#E4807D;"></div><div style="flex:0.5;background:#2C2523;"></div></div>
+      <p style="font-size:11px;">~60% linho · ~25% vermelho · coral e carvão como apoio. O vermelho lidera, mas respira.</p></div>
+    <div class="card"><h3>Contraste &amp; acessibilidade</h3><p style="font-size:11px;">Para texto, use <strong>Carvão</strong> sobre Linho ou branco sobre <strong>Vermelho Valdete</strong>. Evite texto em Coral ou Rosé sobre fundo claro — reserve esses tons para áreas e detalhes.</p></div>
+  </div>
+  <div class="foot"><span>Valdete Costuras</span><span class="dashes">– – –</span><span>Cores</span></div>
+</section>
+
+<!-- 9 TIPOGRAFIA -->
+<section class="page">
+  <div class="num">09</div>
+  <span class="kicker">07 · Tipografia</span>
+  <h1 class="section">Tipografia</h1>
+  <hr class="rule">
+  <p style="margin-bottom:22px;">Três vozes tipográficas trabalham juntas: a caligrafia da marca, um serifado elegante para títulos e uma sans limpa para textos e interface.</p>
+  <div class="card" style="margin-bottom:14px;">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="margin:0;">Marca · Alex Brush</h3><span style="font-size:10px;color:var(--grafite);">Somente no logo</span></div>
+    <div class="wordmark" style="font-size:58px;margin-top:6px;">Valdete Costuras</div>
+    <p style="font-size:11px;">Exclusiva da assinatura. Nunca use para textos, títulos ou frases.</p>
+  </div>
+  <div class="grid2" style="gap:14px;">
+    <div class="card"><div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="margin:0;">Títulos · Cormorant Garamond</h3></div>
+      <div style="font-family:var(--serif);font-size:40px;font-weight:600;margin:8px 0 2px;">Aa Bb Cc</div>
+      <div style="font-family:var(--serif);font-size:14px;color:var(--grafite);letter-spacing:.02em;">ABCDEFGHIJKLM · abcdefghijklm<br>1234567890 &amp; ?!</div>
+      <p style="font-size:11px;margin-top:8px;">Elegante e artesanal. Para títulos, chamadas e citações. Pesos 400–600.</p></div>
+    <div class="card"><div style="display:flex;justify-content:space-between;align-items:baseline;"><h3 style="margin:0;">Texto · Jost</h3></div>
+      <div style="font-family:var(--sans);font-size:36px;font-weight:500;margin:8px 0 2px;">Aa Bb Cc</div>
+      <div style="font-family:var(--sans);font-size:13px;color:var(--grafite);">ABCDEFGHIJKLM · abcdefghijklm<br>1234567890 &amp; ?!</div>
+      <p style="font-size:11px;margin-top:8px;">Limpa e moderna. Para corpo de texto, botões, legendas e interface. Pesos 300–600.</p></div>
+  </div>
+  <div class="card" style="margin-top:14px;"><h3>Hierarquia sugerida</h3><p style="font-size:11px;">Título — Cormorant Garamond 600 · Subtítulo/rótulo — Jost 500 caixa alta, espaçamento .2em · Corpo — Jost 300/400, 13–15px, entrelinha 1.6.</p></div>
+  <div class="foot"><span>Valdete Costuras</span><span class="dashes">– – –</span><span>Tipografia</span></div>
+</section>
+
+<!-- 10 ELEMENTOS -->
+<section class="page">
+  <div class="num">10</div>
+  <span class="kicker">08 · Elementos</span>
+  <h1 class="section">Elementos gráficos</h1>
+  <hr class="rule">
+  <p style="margin-bottom:20px;">Elementos de apoio dão consistência sem competir com o logo. Todos nascem da mesma ideia: <strong>linha, ponto e costura</strong>.</p>
+  <div class="grid3">
+    <div class="card" style="text-align:center;"><div style="font-size:26px;letter-spacing:.35em;color:var(--red-1);margin:18px 0;">– – – – –</div><h3 style="margin-top:6px;">Traço-costura</h3><p style="font-size:11px;">A linha tracejada de “Costuras”. Use como divisor, moldura ou detalhe. Sempre em vermelho ou coral.</p></div>
+    <div class="card" style="text-align:center;"><svg width="70" height="70" viewBox="0 0 150 150" style="margin:6px 0;"><circle cx="75" cy="75" r="60" fill="none" stroke="#C4302E" stroke-width="3" stroke-dasharray="7 6" stroke-linecap="round"/></svg><h3 style="margin-top:6px;">Círculo pontilhado</h3><p style="font-size:11px;">O anel do monograma isolado. Ótimo como selo, moldura de foto ou ícone.</p></div>
+    <div class="card" style="text-align:center;"><div style="display:flex;gap:5px;justify-content:center;margin:22px 0;"><span style="width:22px;height:22px;background:#C4302E;border-radius:3px;"></span><span style="width:22px;height:22px;background:#E4807D;border-radius:3px;"></span><span style="width:22px;height:22px;background:#F6A6A2;border-radius:3px;"></span></div><h3 style="margin-top:6px;">Blocos de cor</h3><p style="font-size:11px;">Faixas e cartões em tons da paleta para organizar conteúdo com calor.</p></div>
+  </div>
+  <div class="card" style="margin-top:18px;background:var(--areia);"><h3>Padronagem</h3><div style="height:60px;background:repeating-linear-gradient(90deg,#C4302E 0 8px,transparent 8px 20px);opacity:.7;border-radius:4px;margin:6px 0 10px;"></div><p style="font-size:11px;">Uma trama sutil de traços pode preencher fundos, capas e faixas — sempre discreta, deixando o conteúdo respirar.</p></div>
+  <div class="foot"><span>Valdete Costuras</span><span class="dashes">– – –</span><span>Elementos</span></div>
+</section>
+
+<!-- 11 APLICACOES -->
+<section class="page">
+  <div class="num">11</div>
+  <span class="kicker">09 · Aplicações</span>
+  <h1 class="section">Aplicações</h1>
+  <hr class="rule">
+  <p style="margin-bottom:18px;">A marca em uso. Exemplos de como a identidade ganha vida nos pontos de contato do dia a dia.</p>
+  <div class="grid2" style="gap:18px;">
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div style="background:var(--red-1);height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;">
+        <svg width="46" height="46" viewBox="0 0 150 150" style="position:absolute;top:14px;left:14px;"><circle cx="75" cy="75" r="60" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="7 6" stroke-linecap="round"/><path d="M332 -71Q327 -71 327 -61Q327 -28 383 107Q400 146 417.0 185.0Q434 224 450 263L496 398Q507 432 513.5 456.5Q520 481 520 497Q520 567 480.0 602.5Q440 638 374 638Q312 638 251.5 610.5Q191 583 141.5 536.0Q92 489 62 431Q19 349 19 281Q19 234 42.0 196.0Q65 158 102 144Q128 135 153 135Q188 135 218.0 150.5Q248 166 266.5 194.0Q285 222 285 257Q285 261 285.0 265.5Q285 270 284 274Q280 286 290 286Q301 286 302 270Q303 266 303.5 262.0Q304 258 304 253Q304 217 280.0 186.0Q256 155 218.5 135.5Q181 116 141 116Q100 116 62 136Q-19 180 -19 289Q-19 367 23 440Q61 506 122.0 555.0Q183 604 256.0 631.5Q329 659 401 659Q451 659 491.0 643.5Q531 628 554.5 596.5Q578 565 578 516Q578 423 494 237Q398 26 398 0Q398 -7 403 -5Q429 12 638 263Q745 391 819.5 470.5Q894 550 937 581Q975 610 1003.0 628.5Q1031 647 1048 657Q1110 691 1162 691Q1185 691 1197.5 686.5Q1210 682 1210 662Q1210 649 1201 649Q1198 649 1187.0 653.5Q1176 658 1165 658Q1112 658 1054 627Q938 565 788 405Q745 359 687.5 291.0Q630 223 558 132Q444 -12 421 -25Q378 -50 356.5 -60.5Q335 -71 332 -71Z" transform="translate(75,75) scale(0.06021,-0.06021) translate(-595.50,-310.00)" fill="#fff"/></svg>
+        <div class="wordmark" style="font-size:40px;color:#fff;">Valdete</div>
+        <div class="costuras" style="font-size:8px;color:#fff;">Costuras</div>
+      </div>
+      <div style="padding:12px 16px;font-size:10px;color:var(--grafite);letter-spacing:.05em;">Valdete · Costureira<br>(00) 00000-0000 · @valdetecosturas</div>
+    </div>
+    <div class="card" style="display:flex;align-items:center;justify-content:center;padding:0;">
+      <div style="border:1px dashed var(--red-3);border-radius:50%;width:150px;height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;"><div class="wordmark" style="font-size:34px;">Valdete</div><div class="costuras" style="font-size:7px;">Costuras</div><div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--grafite);margin-top:8px;">Feito à mão</div></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:18px;padding:0;overflow:hidden;">
+    <div style="height:16px;background:var(--areia);display:flex;align-items:center;gap:5px;padding:0 10px;"><span style="width:7px;height:7px;border-radius:50%;background:#C4302E;"></span><span style="width:7px;height:7px;border-radius:50%;background:#E4807D;"></span><span style="width:7px;height:7px;border-radius:50%;background:#F6A6A2;"></span></div>
+    <div style="background:radial-gradient(120% 90% at 80% -20%,rgba(244,166,162,.4),transparent 60%),var(--linho);padding:26px 30px;display:flex;justify-content:space-between;align-items:center;">
+      <div style="max-width:60%;">
+        <div class="wordmark" style="font-size:34px;">Valdete</div>
+        <div class="costuras" style="font-size:7px;margin-bottom:14px;">Costuras</div>
+        <div style="font-family:var(--serif);font-size:26px;font-weight:600;line-height:1.15;color:var(--carvao);">Sua roupa preferida,<br>caindo perfeita de novo.</div>
+        <p style="font-size:11px;margin:8px 0 14px;">Ajustes, consertos e reformas com capricho de ateliê.</p>
+        <span style="display:inline-block;background:var(--red-1);color:#fff;font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:9px 18px;border-radius:30px;">Peça um orçamento</span>
+      </div>
+      <svg width="120" height="120" viewBox="0 0 150 150"><circle cx="75" cy="75" r="60" fill="none" stroke="#C4302E" stroke-width="1.6" stroke-dasharray="7 6" stroke-linecap="round"/><path d="M332 -71Q327 -71 327 -61Q327 -28 383 107Q400 146 417.0 185.0Q434 224 450 263L496 398Q507 432 513.5 456.5Q520 481 520 497Q520 567 480.0 602.5Q440 638 374 638Q312 638 251.5 610.5Q191 583 141.5 536.0Q92 489 62 431Q19 349 19 281Q19 234 42.0 196.0Q65 158 102 144Q128 135 153 135Q188 135 218.0 150.5Q248 166 266.5 194.0Q285 222 285 257Q285 261 285.0 265.5Q285 270 284 274Q280 286 290 286Q301 286 302 270Q303 266 303.5 262.0Q304 258 304 253Q304 217 280.0 186.0Q256 155 218.5 135.5Q181 116 141 116Q100 116 62 136Q-19 180 -19 289Q-19 367 23 440Q61 506 122.0 555.0Q183 604 256.0 631.5Q329 659 401 659Q451 659 491.0 643.5Q531 628 554.5 596.5Q578 565 578 516Q578 423 494 237Q398 26 398 0Q398 -7 403 -5Q429 12 638 263Q745 391 819.5 470.5Q894 550 937 581Q975 610 1003.0 628.5Q1031 647 1048 657Q1110 691 1162 691Q1185 691 1197.5 686.5Q1210 682 1210 662Q1210 649 1201 649Q1198 649 1187.0 653.5Q1176 658 1165 658Q1112 658 1054 627Q938 565 788 405Q745 359 687.5 291.0Q630 223 558 132Q444 -12 421 -25Q378 -50 356.5 -60.5Q335 -71 332 -71Z" transform="translate(75,75) scale(0.06021,-0.06021) translate(-595.50,-310.00)" fill="#C4302E"/></svg>
+    </div>
+  </div>
+  <p style="font-size:10.5px;margin-top:8px;text-align:center;color:var(--grafite);">Cartão de visita · Etiqueta de peça · Cabeçalho da landing page</p>
+  <div class="foot"><span>Valdete Costuras</span><span class="dashes">– – –</span><span>Aplicações</span></div>
+</section>
+
+<!-- 12 ENCERRAMENTO -->
+<section class="page cover" style="background:var(--red-1);">
+  <div style="text-align:center;color:#fff;">
+    <svg width="120" height="120" viewBox="0 0 150 150" style="margin-bottom:10px;"><circle cx="75" cy="75" r="60" fill="none" stroke="#fff" stroke-width="1.6" stroke-dasharray="7 6" stroke-linecap="round"/><path d="M332 -71Q327 -71 327 -61Q327 -28 383 107Q400 146 417.0 185.0Q434 224 450 263L496 398Q507 432 513.5 456.5Q520 481 520 497Q520 567 480.0 602.5Q440 638 374 638Q312 638 251.5 610.5Q191 583 141.5 536.0Q92 489 62 431Q19 349 19 281Q19 234 42.0 196.0Q65 158 102 144Q128 135 153 135Q188 135 218.0 150.5Q248 166 266.5 194.0Q285 222 285 257Q285 261 285.0 265.5Q285 270 284 274Q280 286 290 286Q301 286 302 270Q303 266 303.5 262.0Q304 258 304 253Q304 217 280.0 186.0Q256 155 218.5 135.5Q181 116 141 116Q100 116 62 136Q-19 180 -19 289Q-19 367 23 440Q61 506 122.0 555.0Q183 604 256.0 631.5Q329 659 401 659Q451 659 491.0 643.5Q531 628 554.5 596.5Q578 565 578 516Q578 423 494 237Q398 26 398 0Q398 -7 403 -5Q429 12 638 263Q745 391 819.5 470.5Q894 550 937 581Q975 610 1003.0 628.5Q1031 647 1048 657Q1110 691 1162 691Q1185 691 1197.5 686.5Q1210 682 1210 662Q1210 649 1201 649Q1198 649 1187.0 653.5Q1176 658 1165 658Q1112 658 1054 627Q938 565 788 405Q745 359 687.5 291.0Q630 223 558 132Q444 -12 421 -25Q378 -50 356.5 -60.5Q335 -71 332 -71Z" transform="translate(75,75) scale(0.06021,-0.06021) translate(-595.50,-310.00)" fill="#fff"/></svg>
+    <div class="wordmark" style="font-size:76px;color:#fff;">Valdete</div>
+    <div class="costuras" style="font-size:12px;color:#fff;">Costuras</div>
+    <p style="color:rgba(255,255,255,.85);max-width:40ch;margin:24px auto 0;text-align:center;font-size:12px;">Uma marca feita à mão, ponto por ponto. Cuide dela com o mesmo carinho que ela cuida das roupas de quem confia.</p>
+    <div style="margin-top:30px;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.7);">Manual de Marca · Edição 01 · 2026</div>
+    <div style="margin-top:6px;font-size:9px;letter-spacing:.2em;color:rgba(255,255,255,.55);">Identidade &amp; design por Coded by M</div>
+  </div>
+</section>
+
+</body>
+</html>
