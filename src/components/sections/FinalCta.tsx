@@ -24,8 +24,7 @@ export function FinalCta() {
             <WhatsAppButton
               label={finalCta.ctaLabel}
               size="lg"
-              variant="secondary"
-              className="border-accent-foreground/40 !text-accent-foreground hover:border-accent-foreground hover:bg-accent-foreground/10"
+              variant="inverse"
             />
           </div>
         </Reveal>

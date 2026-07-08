@@ -133,3 +133,107 @@ h3 {
   border-top: 1.5px dashed color-mix(in srgb, var(--color-accent) 55%, transparent);
   border-radius: 2px;
 }
+
+/*
+  Stitch underline — real "traço-costura" dashes (not dots) that sew in
+  sequentially on hover, left→right, as if a needle were running the seam.
+  The dashes are painted full-width and revealed with a clip-path wipe on an
+  ease-out-expo curve, so each stitch lands in turn. Active links stay sewn.
+*/
+.stitch-underline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.4rem;
+  height: 2px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--color-accent) 0 6px,
+    transparent 6px 11px
+  );
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 820ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+.group:hover .stitch-underline,
+.stitch-underline[data-active="true"] {
+  clip-path: inset(0 0 0 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .stitch-underline {
+    transition: none;
+  }
+}
+
+/*
+  Logo motion — "costura no hover". On hover of a .logo-stitch ancestor the
+  dotted ring runs the seam (dashes travel one full period, seamless loop) and
+  the "V" settles with a soft ease-out scale. Idle = perfectly still.
+*/
+@keyframes stitch-run {
+  to {
+    /* one dash period (dash 9 + gap 8) → seamless traveling stitch */
+    stroke-dashoffset: -17;
+  }
+}
+.monogram-v {
+  transform-box: view-box;
+  transform-origin: center;
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.logo-stitch:hover .monogram-ring {
+  animation: stitch-run 1.3s linear infinite;
+}
+.logo-stitch:hover .monogram-v {
+  transform: scale(1.06);
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-stitch:hover .monogram-ring {
+    animation: none;
+  }
+  .logo-stitch:hover .monogram-v {
+    transform: none;
+  }
+}
+
+/*
+  Button seam — the "stitch" CTA carries a sewn edge (dashes on all four sides)
+  that runs clockwise on hover, echoing the logo ring and the nav underline.
+  Size-independent (CSS gradients), so it fits any button width.
+*/
+.btn-seam {
+  position: relative;
+  --seam-color: var(--color-accent-foreground);
+}
+.btn-seam::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 220ms ease;
+  background-repeat: no-repeat;
+  background-image:
+    repeating-linear-gradient(90deg, var(--seam-color) 0 6px, transparent 6px 11px),
+    repeating-linear-gradient(90deg, var(--seam-color) 0 6px, transparent 6px 11px),
+    repeating-linear-gradient(0deg, var(--seam-color) 0 6px, transparent 6px 11px),
+    repeating-linear-gradient(0deg, var(--seam-color) 0 6px, transparent 6px 11px);
+  background-size: 100% 1.5px, 100% 1.5px, 1.5px 100%, 1.5px 100%;
+  background-position: 0 0, 0 100%, 0 0, 100% 0;
+}
+.btn-seam:hover::before {
+  opacity: 0.85;
+  animation: seam-run 1.3s linear infinite;
+}
+@keyframes seam-run {
+  to {
+    /* each edge shifts one dash period (6+11=17) in its clockwise direction */
+    background-position: 17px 0, -17px 100%, 0 -17px, 100% 17px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-seam:hover::before {
+    animation: none;
+  }
+}

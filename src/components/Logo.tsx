@@ -31,6 +31,7 @@ export function Monogram({ className = "", size = 40, title }: MonogramProps) {
     >
       {title && <title>{title}</title>}
       <circle
+        className="monogram-ring"
         cx="100"
         cy="100"
         r="80"
@@ -40,11 +41,15 @@ export function Monogram({ className = "", size = 40, title }: MonogramProps) {
         strokeDasharray="9 8"
         strokeLinecap="round"
       />
-      <path
-        d={V_GLYPH}
-        transform="translate(100,100) scale(0.08462,-0.08462) translate(-595.5,-310)"
-        fill="currentColor"
-      />
+      {/* group wrapper so the "settle" scale doesn't clobber the glyph's
+          own positioning transform */}
+      <g className="monogram-v">
+        <path
+          d={V_GLYPH}
+          transform="translate(100,100) scale(0.08462,-0.08462) translate(-595.5,-310)"
+          fill="currentColor"
+        />
+      </g>
     </svg>
   );
 }

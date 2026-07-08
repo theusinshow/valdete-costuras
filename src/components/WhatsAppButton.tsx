@@ -5,7 +5,7 @@ import { whatsappUrl, waMessages } from "@/lib/whatsapp";
 type Props = {
   label: string;
   message?: string;
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: "primary" | "inverse" | "secondary" | "ghost";
   size?: "md" | "lg";
   className?: string;
 };
