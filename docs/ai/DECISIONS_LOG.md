@@ -71,6 +71,15 @@
 - **Graphic elements:** Dotted-circle monogram, traço-costura (dashed hairline) as eyebrow/divider detail, rosé radial glow on hero — per manual "Elementos gráficos".
 **Impact:** `globals.css` tokens, `layout.tsx` fonts + favicon/OG, `Logo.tsx`, Navbar/Footer/Hero/FinalCta/SectionHeader. Accessibility re-checked (AA). DESIGN_SYSTEM.md updated. CNT-006 (logo) resolved.
 
+## DEC-015 — Diferenciais as a stitched timeline
+**Status:** Approved (developer request, 2026-07-08)
+**Decision:** The `#diferenciais` section (the 4 trust pillars of DEC-005) is re-presented as a "stitch timeline": each pillar is a knot (node) on a running seam of round stitch points. On scroll into view the seam sews in **one point at a time** (left→right desktop, top→bottom mobile); when the needle lands each knot, its pillar settles in (gentle overshoot on the knot, fade + 8px rise on the text). Content of the 4 pillars is unchanged — this is presentation/motion only.
+- **Layout chosen:** "Timeline costurada (nós)" over a plain seam-over-columns or per-column contained variant.
+- **Knot motion:** gentle settle (minimal overshoot `cubic-bezier(0.34,1.4,0.5,1)`, ~420ms) over a dry pop.
+- **Implementation:** new `StitchTimeline.tsx` (client, IntersectionObserver, per-element inline `transition-delay` cascade) + `.stitch-*` rules in `globals.css` (grouped with the other seam motions). DOM dots via flex so the horizontal↔vertical geometry and the one-by-one sequence come for free; no SVG/WebGL, no new deps.
+- **A11y/perf:** reserves its space (no CLS), animates transform/opacity only, and under `prefers-reduced-motion` all `.stitch-*` transitions/delays are dropped so the seam appears instantly on reveal.
+**Impact:** `Pillars.tsx` now renders `StitchTimeline`; new component + `globals.css` motion block. Consistent with DEC-008 (subtle motion) and the existing traço-costura vocabulary (nav underline, logo ring, button seam).
+
 ## DEC-009 — Tech stack: Next.js + Tailwind
 **Status:** Approved
 **Decision:** Next.js (App Router) + Tailwind + TypeScript. Slight overkill for one page; chosen for SEO, image handling, future growth.
