@@ -63,13 +63,21 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Headings default to the display face */
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-display);
-  color: var(--color-text);
+/*
+  Headings default to the display face and carvão ink.
+  MUST live in @layer base so Tailwind `text-*` utilities can override the
+  color per element (e.g. text-accent-foreground on the red CTA, or the light
+  ink on the dark Empresas card). Unlayered element rules would otherwise beat
+  every utility and force headings to --color-text. See DEC-016.
+*/
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-text);
+  }
 }
 
 /* Visible, on-brand focus */
@@ -94,10 +102,26 @@ h4 {
 }
 
 /* Cormorant Garamond runs light — give display headings a touch more presence */
-h1,
-h2,
-h3 {
-  letter-spacing: -0.01em;
+@layer base {
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.01em;
+  }
+}
+
+/*
+  No-JS / crawler safety net. Scroll-reveal (Reveal.tsx) and the stitch timeline
+  (StitchTimeline.tsx) start hidden and are revealed by JS. If JS never runs,
+  `html.js` is absent and this forces the content visible so nothing ships blank.
+  See DEC-016.
+*/
+html:not(.js) [data-reveal],
+html:not(.js) .stitch-timeline .stitch-body,
+html:not(.js) .stitch-timeline .stitch-node,
+html:not(.js) .stitch-timeline .stitch-dot {
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 /* --- Brand signature ------------------------------------------------------ */
@@ -307,5 +331,185 @@ h3 {
   .stitch-body {
     transition: none !important;
     transition-delay: 0ms !important;
+  }
+}
+
+/*
+  ── Motion system (DEC-017) ─────────────────────────────────────────────────
+  Two mechanisms, both quiet and seam-precise (MOTION_DIRECTION.md):
+
+  1. [data-intro] — load-time hero choreography. Pure CSS keyframes with
+     `both` fill, so the "hidden" state only exists while the animation is
+     pending: no JS, no reduced-motion, crawlers and print all see the final
+     frame. Delay via --d per element.
+
+  2. .rg / .is-shown — scroll-reveal groups (RevealGroup.tsx flips the class
+     once via IntersectionObserver). Hidden states are gated on BOTH `html.js`
+     and motion-safe, so no-JS and reduced-motion users never see a blank.
+     Child verbs: rg-rise (fade + 14px rise), rg-fade, rg-scale (0.985 settle),
+     rg-knot (stitch knot pops in), rg-drawx (hairline draws left→right),
+     rg-photo (photo settles from 1.04). Cascade via --d per element.
+*/
+
+/* ---- 1. Hero intro ---- */
+@keyframes intro-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+@keyframes intro-fade {
+  from {
+    opacity: 0;
+  }
+}
+/* script signature "writes itself" — generous insets protect Alex Brush
+   ascenders/descenders from the clip */
+@keyframes intro-wipe {
+  from {
+    clip-path: inset(-25% 100% -25% -5%);
+  }
+  to {
+    clip-path: inset(-25% -5% -25% -5%);
+  }
+}
+@keyframes intro-settle {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-intro] {
+    animation: intro-rise 640ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
+  [data-intro="fade"] {
+    animation-name: intro-fade;
+    animation-duration: 1100ms;
+  }
+
+  /* Hero brand panel — the signature sews itself in, one gesture at a time:
+     ring seam runs → "V" settles → "Valdete" writes in → "Costuras" fades. */
+  .hero-sig .monogram-ring {
+    animation:
+      intro-fade 700ms cubic-bezier(0.22, 1, 0.36, 1) 350ms both,
+      stitch-run 1.5s linear 350ms 2;
+  }
+  .hero-sig .monogram-v {
+    animation: intro-settle 720ms cubic-bezier(0.22, 1, 0.36, 1) 600ms both;
+  }
+  .hero-sig .wordmark {
+    animation: intro-wipe 1000ms cubic-bezier(0.22, 1, 0.36, 1) 850ms both;
+  }
+  .hero-sig .costuras {
+    animation: intro-fade 750ms cubic-bezier(0.22, 1, 0.36, 1) 1500ms both;
+  }
+}
+
+/* ---- 2. Scroll-reveal groups ---- */
+@media (prefers-reduced-motion: no-preference) {
+  /* transitions (defined once; delays cascade per element) */
+  .rg .rg-rise,
+  .rg .rg-fade {
+    transition:
+      opacity 560ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--d, 0ms);
+  }
+  .rg .rg-scale {
+    transition:
+      opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--d, 0ms);
+  }
+  .rg .rg-knot {
+    transition:
+      opacity 300ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 420ms cubic-bezier(0.34, 1.4, 0.5, 1); /* same gentle knot-settle as the timeline */
+    transition-delay: var(--d, 0ms);
+  }
+  .rg .rg-drawx {
+    transform-origin: left;
+    transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--d, 0ms);
+  }
+  .rg .rg-photo {
+    transition:
+      opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--d, 0ms);
+  }
+
+  /* hidden states — only with JS present and only until the group shows */
+  html.js .rg:not(.is-shown) .rg-rise {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  html.js .rg:not(.is-shown) .rg-fade {
+    opacity: 0;
+  }
+  html.js .rg:not(.is-shown) .rg-scale {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  html.js .rg:not(.is-shown) .rg-knot {
+    opacity: 0;
+    transform: scale(0);
+  }
+  html.js .rg:not(.is-shown) .rg-drawx {
+    transform: scaleX(0);
+  }
+  html.js .rg:not(.is-shown) .rg-photo {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+
+  /* Final-CTA seal — the ring runs its seam once as the band shows */
+  .rg.is-shown .cta-seal .monogram-ring {
+    animation: stitch-run 1.4s linear 2;
+  }
+
+  /* Mobile drawer items — entrance staggers via --stagger without delaying
+     the color/background hover feedback (per-property delays) */
+  .drawer-item {
+    transition:
+      opacity 300ms cubic-bezier(0.22, 1, 0.36, 1) var(--stagger, 0ms),
+      transform 300ms cubic-bezier(0.22, 1, 0.36, 1) var(--stagger, 0ms),
+      color 150ms ease,
+      background-color 150ms ease;
+  }
+
+  /* Section-header signature line — a short stitch that sews in under the
+     title once its Reveal fires (data-shown comes from Reveal.tsx) */
+  html.js [data-shown] .sig-line {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 900ms cubic-bezier(0.22, 1, 0.36, 1) 250ms;
+  }
+  html.js [data-shown="true"] .sig-line {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Print — everything visible, no motion artifacts */
+@media print {
+  [data-intro],
+  [data-reveal],
+  .rg .rg-rise,
+  .rg .rg-fade,
+  .rg .rg-scale,
+  .rg .rg-knot,
+  .rg .rg-drawx,
+  .rg .rg-photo,
+  .sig-line,
+  .stitch-dot,
+  .stitch-node,
+  .stitch-body {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    animation: none !important;
+    transition: none !important;
   }
 }

@@ -1,7 +1,9 @@
+import Image from "next/image";
 import { site } from "@/lib/content";
 import { Section } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Reveal } from "@/components/Reveal";
+import { RevealGroup } from "@/components/RevealGroup";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { MapPinIcon, ClockIcon } from "@/components/icons";
 
@@ -39,15 +41,19 @@ export function Location() {
           </Reveal>
         </div>
 
-        <Reveal delay={120}>
+        {/* Reveal (DEC-017): the storefront photo settles from 1.04, like a
+            print laid on the table; the caption follows. */}
+        <RevealGroup>
           <figure className="overflow-hidden rounded-[var(--radius-lg)] border border-border">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/fachada.webp"
-              alt="Fachada da loja Valdete Costuras em Palhoça - SC"
-              loading="lazy"
-              className="aspect-[4/3] w-full object-cover"
-            />
+            <div className="rg-photo relative aspect-[4/3] w-full">
+              <Image
+                src="/fachada.webp"
+                alt="Fachada da loja Valdete Costuras em Palhoça - SC"
+                fill
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
             {site.location.mapsUrl && (
               <figcaption className="border-t border-border bg-surface/60 px-4 py-3 text-center text-sm">
                 <a
@@ -61,7 +67,7 @@ export function Location() {
               </figcaption>
             )}
           </figure>
-        </Reveal>
+        </RevealGroup>
       </div>
     </Section>
   );

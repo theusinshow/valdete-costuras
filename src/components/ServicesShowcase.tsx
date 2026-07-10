@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { ServiceImage } from "./ServiceImage";
+import { RevealGroup } from "./RevealGroup";
 
 type Service = {
   title: string;
@@ -10,12 +11,19 @@ type Service = {
   alt: string;
 };
 
+/** Per-element reveal delay (DEC-017). */
+const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
+
 /**
  * Synced services gallery. The list on the left drives a large sticky image
  * on the right: the active service is set by scroll position (a scroll-spy
  * that fires on whichever row crosses the viewport's center band) and by
  * hover/focus. On narrow screens the sticky panel is dropped and each photo
  * renders inline under its service. Crossfade + reduced-motion aware.
+ *
+ * Reveal (DEC-017): each row's hairline seam draws in left→right while the
+ * row rises, top to bottom; the sticky photo settles from 1.04 like a print
+ * being laid on the table. Incoming crossfade images settle the same way.
  */
 export function ServicesShowcase({ services }: { services: readonly Service[] }) {
   const [active, setActive] = useState(0);
@@ -38,9 +46,9 @@ export function ServicesShowcase({ services }: { services: readonly Service[] })
   }, []);
 
   return (
-    <div className="grid gap-10 lg:grid-cols-[1fr_0.82fr] lg:items-start lg:gap-16">
+    <RevealGroup className="grid gap-10 lg:grid-cols-[1fr_0.82fr] lg:items-start lg:gap-16">
       {/* List — drives the panel */}
-      <ul className="divide-y divide-border border-t border-border">
+      <ul>
         {services.map((service, i) => {
           const isActive = i === active;
           return (
@@ -51,9 +59,15 @@ export function ServicesShowcase({ services }: { services: readonly Service[] })
                 rowRefs.current[i] = el;
               }}
               onMouseEnter={() => setActive(i)}
-              className="group py-5"
+              className="group relative py-5"
             >
-              <div className="flex items-start gap-5">
+              {/* hairline seam — draws in with its row */}
+              <span
+                aria-hidden
+                className="rg-drawx absolute inset-x-0 top-0 h-px bg-border"
+                style={d(i * 70)}
+              />
+              <div className="rg-rise flex items-start gap-5" style={d(i * 70 + 60)}>
                 <span
                   className={`font-display text-sm tabular-nums transition-colors duration-200 ${
                     isActive ? "text-accent" : "text-text-muted"
@@ -87,20 +101,23 @@ export function ServicesShowcase({ services }: { services: readonly Service[] })
 
       {/* Sticky image panel — desktop only. Photos are stacked and crossfaded. */}
       <div className="hidden lg:block">
-        <div className="sticky top-24 overflow-hidden rounded-[var(--radius-lg)] border border-border bg-surface-muted">
+        <div
+          className="rg-photo sticky top-24 overflow-hidden rounded-[var(--radius-lg)] border border-border bg-surface-muted"
+          style={d(200)}
+        >
           <div className="relative aspect-[4/5]">
             {services.map((service, i) => (
               <ServiceImage
                 key={service.title}
                 src={service.image}
                 alt={service.alt}
-                className={`absolute inset-0 h-full w-full transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
-                  i === active ? "opacity-100" : "opacity-0"
+                className={`absolute inset-0 h-full w-full transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+                  i === active ? "opacity-100 scale-100" : "opacity-0 scale-[1.03]"
                 }`}
               />
             ))}
             {/* Caption scrim — active service + index */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-black/50 via-black/10 to-transparent px-5 pb-4 pt-12">
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-black/65 via-black/20 to-transparent px-5 pb-4 pt-12">
               <span className="text-sm font-medium text-white">
                 {services[active].title}
               </span>
@@ -112,6 +129,6 @@ export function ServicesShowcase({ services }: { services: readonly Service[] })
           </div>
         </div>
       </div>
-    </div>
+    </RevealGroup>
   );
 }

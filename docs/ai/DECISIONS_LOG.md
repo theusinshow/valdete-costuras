@@ -80,6 +80,22 @@
 - **A11y/perf:** reserves its space (no CLS), animates transform/opacity only, and under `prefers-reduced-motion` all `.stitch-*` transitions/delays are dropped so the seam appears instantly on reveal.
 **Impact:** `Pillars.tsx` now renders `StitchTimeline`; new component + `globals.css` motion block. Consistent with DEC-008 (subtle motion) and the existing traço-costura vocabulary (nav underline, logo ring, button seam).
 
+## DEC-016 — Impeccable audit fixes (CSS layer + a11y)
+**Status:** Approved (developer request, 2026-07-09)
+**Decision:** From `/impeccable audit`. Fixed a root CSS-cascade defect and several a11y/robustness gaps found across the whole page.
+- **Cascade (root cause):** the `h1–h4` `color`/`letter-spacing` rules in `globals.css` were **unlayered**, so in Tailwind v4 they beat every `text-*` utility (unlayered CSS wins over layered). Wrapped both blocks in `@layer base`. This restored: the *Empresas* card title (was carvão-on-carvão, contrast 1.0 → invisible; also given an explicit `text-[color:var(--color-bg)]`), the final-CTA title (was carvão-on-vermelho 2.7:1 → now white 5.5:1), and the active/hover **accent-strong** state on service titles (was dead).
+- **A11y:** closed mobile drawer marked `inert` (its links were still keyboard-focusable); `sr-only` `<h2>` added to the titleless *Diferenciais* section (labels the region, fixes the h2→h3 gap; DEC-015 visual unchanged); final-CTA subtitle `/85`→`/90` (mobile 16px reached AA).
+- **Robustness:** `html.js` flag set before paint + CSS fallback so `Reveal`/`StitchTimeline` content is never hidden without JS (crawler/no-JS safety); gallery caption scrim deepened (`black/50`→`/65`) so the white label stays legible over any photo or the placeholder; hero + fachada photos migrated to `next/image`.
+**Impact:** `globals.css`, `layout.tsx`, `Companies.tsx`, `Navbar.tsx`, `Pillars.tsx`, `FinalCta.tsx`, `Reveal.tsx`, `ServicesShowcase.tsx`, `Hero.tsx`, `Location.tsx`. Palette/tokens and visual direction unchanged. Verified in-browser (computed colors + AA) and via `next build`.
+
+## DEC-017 — Motion choreography (seam language site-wide)
+**Status:** Approved (developer request, 2026-07-09)
+**Decision:** From `/impeccable animate` + MOTION_DIRECTION.md. Replaces the uniform fade-and-rise `Reveal` reflex (an AI tell per the impeccable register) with reveals that *fit what they reveal*, all inside the existing traço-costura vocabulary. Two mechanisms:
+- **`[data-intro]` (hero, load-time):** pure CSS keyframes with `both` fill — no JS/IO gating, so copy renders even for crawlers/no-JS/reduced-motion. Cascade: H1 → subtitle → CTA → trust marks (`--d` per element). Signature moment: in the brand panel the dotted ring fades in while its seam runs twice, the "V" settles (0.92→1), "Valdete" *writes itself* via clip-path wipe, "Costuras" breathes in last (~2.2s total).
+- **`RevealGroup` + `.rg-*` verbs (scroll):** one IO per group flips `.is-shown`; children opt in with `rg-rise / rg-fade / rg-scale / rg-knot / rg-drawx / rg-photo` and `--d` delays. Hidden states gated on `html.js` **and** `prefers-reduced-motion: no-preference` (`:not(.is-shown)` so no specificity fight); print forces everything visible.
+- **Applied:** Services rows rise as their hairline seams draw left→right, sticky photo settles from 1.04 (crossfade also settles); HowItWorks seam draws across, knots land in sequence, steps follow; Empresas card settles then points stitch on one by one; FinalCta band settles from 0.985 while the seal's ring runs its seam; Location photo settles; SectionHeader gains a `sig-line` (short traço-costura that sews in under the title — sanctioned by MOTION_DIRECTION "decorative"); mobile drawer items stagger in (per-property delays so hover feedback stays instant); FAB enters with scale. Empty-testimonials placeholder made static (doc: no motion while empty).
+**Impact:** `globals.css` (motion system block), new `RevealGroup.tsx`, `Reveal.tsx` (`data-shown` hook), Hero/Services/ServicesShowcase/HowItWorks/Companies/FinalCta/Location/Testimonials/SectionHeader/Navbar/FloatingWhatsApp. All transform/opacity/clip-path; IO disconnects after firing. Verified: build clean; reduced-motion, no-JS and post-scroll audits report 0 hidden elements; 0 mobile overflow.
+
 ## DEC-009 — Tech stack: Next.js + Tailwind
 **Status:** Approved
 **Decision:** Next.js (App Router) + Tailwind + TypeScript. Slight overkill for one page; chosen for SEO, image handling, future growth.

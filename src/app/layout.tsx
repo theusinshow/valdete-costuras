@@ -57,7 +57,20 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${cormorant.variable} ${jost.variable} ${alexBrush.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {/*
+          Mark that JS is running BEFORE the reveal elements paint. Scroll-reveal
+          content starts hidden (opacity-0) only under `html.js`; without JS — or
+          in a crawler that doesn't run it — the CSS fallback keeps everything
+          visible so no section ever ships blank. See DEC-016.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

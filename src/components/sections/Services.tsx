@@ -23,10 +23,10 @@ export function Services() {
         </Reveal>
       </div>
 
-      {/* Synced list + image gallery */}
-      <Reveal delay={120} className="mt-14">
+      {/* Synced list + image gallery — reveals row-by-row (DEC-017) */}
+      <div className="mt-14">
         <ServicesShowcase services={services} />
-      </Reveal>
+      </div>
     </Section>
   );
 }

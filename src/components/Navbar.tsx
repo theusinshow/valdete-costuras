@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { nav, site } from "@/lib/content";
 import { WhatsAppButton } from "./WhatsAppButton";
@@ -146,9 +146,10 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer — inert when closed so its links leave the tab order */}
       <div
         id="mobile-menu"
+        inert={!open || undefined}
         className={`overflow-hidden border-t border-border bg-bg/95 backdrop-blur-md transition-[max-height,opacity] duration-300 motion-reduce:transition-none md:hidden ${
           open ? "max-h-96 opacity-100" : "pointer-events-none max-h-0 opacity-0"
         }`}
@@ -157,7 +158,7 @@ export function Navbar() {
           className="container-page flex flex-col gap-1 py-4"
           aria-label="Seções"
         >
-          {nav.map((item) => {
+          {nav.map((item, i) => {
             const isActive = active === item.href.replace("#", "");
             return (
               <a
@@ -165,7 +166,10 @@ export function Navbar() {
                 href={item.href}
                 onClick={() => setOpen(false)}
                 aria-current={isActive ? "true" : undefined}
-                className={`flex items-center gap-3 rounded-[var(--radius-sm)] px-3 py-3 text-base font-medium transition-colors ${
+                style={{ "--stagger": open ? `${60 + i * 45}ms` : "0ms" } as CSSProperties}
+                className={`drawer-item flex items-center gap-3 rounded-[var(--radius-sm)] px-3 py-3 text-base font-medium motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${
+                  open ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"
+                } ${
                   isActive
                     ? "text-accent-strong"
                     : "text-text hover:bg-text/[0.04]"
@@ -181,17 +185,25 @@ export function Navbar() {
               </a>
             );
           })}
-          <Button
-            href={whatsappUrl(waMessages.general)}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setOpen(false)}
-            size="lg"
-            className="mt-3 w-full"
+          {/* wrapper carries the stagger so the button's own hover stays instant */}
+          <div
+            style={{ transitionDelay: open ? `${60 + nav.length * 45}ms` : "0ms" }}
+            className={`mt-3 transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${
+              open ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"
+            }`}
           >
-            <WhatsAppIcon />
-            Falar no WhatsApp
-          </Button>
+            <Button
+              href={whatsappUrl(waMessages.general)}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              size="lg"
+              className="w-full"
+            >
+              <WhatsAppIcon />
+              Falar no WhatsApp
+            </Button>
+          </div>
         </nav>
       </div>
     </header>

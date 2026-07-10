@@ -43,6 +43,8 @@ export function Reveal({ children, delay = 0, className = "", as = "div" }: Prop
   return (
     <Tag
       ref={ref as never}
+      data-reveal=""
+      data-shown={shown ? "true" : "false"}
       className={`motion-safe:transition-all motion-safe:duration-500 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)] ${
         shown
           ? "opacity-100 translate-y-0"

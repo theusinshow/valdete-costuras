@@ -29,7 +29,9 @@ export function Testimonials() {
           ))}
         </ul>
       ) : (
-        <Reveal className="mt-12">
+        /* No motion while empty (MOTION_DIRECTION) — the placeholder is
+           furniture, not content; animating it would draw attention to it. */
+        <div className="mt-12">
           <div className="grid gap-6 md:grid-cols-3">
             {Array.from({ length: 3 }).map((_, i) => (
               <div
@@ -48,7 +50,7 @@ export function Testimonials() {
               </div>
             ))}
           </div>
-        </Reveal>
+        </div>
       )}
     </Section>
   );

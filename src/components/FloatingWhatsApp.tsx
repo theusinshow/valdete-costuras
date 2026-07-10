@@ -44,10 +44,10 @@ export function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Falar no WhatsApp"
-      className={`group fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-[var(--shadow-lift)] transition-all duration-300 hover:bg-accent-hover active:scale-95 motion-reduce:transition-none ${
+      className={`group fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-[var(--shadow-lift)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-accent-hover active:scale-95 motion-reduce:transition-none ${
         visible
-          ? "opacity-100 translate-y-0"
-          : "pointer-events-none opacity-0 translate-y-3"
+          ? "opacity-100 scale-100"
+          : "pointer-events-none opacity-0 scale-75"
       }`}
     >
       <StitchRing />

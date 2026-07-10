@@ -22,6 +22,8 @@ export function SectionHeader({
       >
         {title}
       </h2>
+      {/* traço-costura signature — sews in under the title (DEC-017) */}
+      <span aria-hidden className="sig-line stitch-line mt-4 block w-14" />
       {lead && (
         <p className="mt-4 text-base leading-relaxed text-text-muted md:text-lg">
           {lead}
