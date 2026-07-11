@@ -16,8 +16,13 @@ export function Companies() {
         point is stitched on — red knot pops, its line rises — ending on the CTA.
       */}
       <RevealGroup>
+        <div className="relative z-10 mx-auto -mb-4 w-fit rounded-t-[var(--radius)] bg-accent px-5 py-2 text-center">
+          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-foreground">
+            {companies.eyebrow}
+          </span>
+        </div>
         <div
-          className="rg-scale rounded-[var(--radius-lg)] border border-border bg-text px-6 py-12 text-[color:var(--color-bg)] md:px-12 md:py-16"
+          className="rg-scale relative rounded-[var(--radius-lg)] border border-border bg-text px-6 py-12 text-[color:var(--color-bg)] md:px-12 md:py-16"
           style={d(0)}
         >
           <div className="grid items-center gap-10 md:grid-cols-2">
