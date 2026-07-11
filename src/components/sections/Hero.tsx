@@ -93,19 +93,27 @@ export function Hero() {
             </div>
           ) : (
             /*
-              The signature sews itself in (see .hero-sig in globals.css):
-              the dotted ring fades in while its seam runs, the "V" settles,
-              "Valdete" writes in left→right, "Costuras" breathes in last.
+              Brand seal (impeccable critique P1) — the signature is framed as a
+              deliberate atelier stamp with the slogan, so the right column reads
+              as an object, not empty space. The signature still sews itself in
+              (see .hero-sig in globals.css): the dotted ring fades in while its
+              seam runs, the "V" settles, "Valdete" writes in, "Costuras" last.
             */
-            <div className="hero-sig flex aspect-[4/5] flex-col items-center justify-center text-accent">
-              <Monogram size={168} />
-              <div className="mt-8">
-                <Wordmark
-                  withMonogram={false}
-                  scriptSize={60}
-                  className="items-center"
-                />
-              </div>
+            <div className="hero-sig flex aspect-[4/5] flex-col items-center justify-center gap-7 rounded-[var(--radius-lg)] border border-border/70 bg-surface/30 px-8 text-accent">
+              <Monogram size={152} />
+              <Wordmark
+                withMonogram={false}
+                scriptSize={54}
+                className="items-center"
+              />
+              <span aria-hidden className="stitch-line w-16" />
+              <p
+                data-intro
+                style={d(1700)}
+                className="max-w-[15rem] text-balance text-center font-display text-lg italic leading-snug text-text-muted"
+              >
+                {site.slogan}
+              </p>
             </div>
           )}
         </div>
