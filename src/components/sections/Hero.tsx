@@ -122,7 +122,7 @@ export function Hero() {
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"
+          className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent"
         />
         <span className="absolute bottom-3 left-1/2 -translate-x-1/2 text-sm font-medium text-white/95">
           Ateliê em Palhoça - SC

@@ -8,7 +8,6 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-border bg-surface-muted">
       <Monogram
-        aria-hidden
         size={280}
         className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-text/[0.04]"
       />
