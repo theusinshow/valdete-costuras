@@ -65,9 +65,9 @@ export function Hero() {
                 key={item}
                 data-intro
                 style={d(400 + i * 90)}
-                className="flex items-center gap-2 text-sm text-text-muted"
+                className="flex items-start gap-2 text-sm text-text-muted"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                <span aria-hidden className="mt-2 h-px w-4 shrink-0 bg-accent/70" />
                 {item}
               </li>
             ))}
@@ -98,17 +98,35 @@ export function Hero() {
               "Valdete" writes in left→right, "Costuras" breathes in last.
             */
             <div className="hero-sig flex aspect-[4/5] flex-col items-center justify-center text-accent">
-              <Monogram size={132} />
+              <Monogram size={168} />
               <div className="mt-8">
                 <Wordmark
                   withMonogram={false}
-                  scriptSize={50}
+                  scriptSize={60}
                   className="items-center"
                 />
               </div>
             </div>
           )}
         </div>
+      </div>
+
+      {/* Faixa da fachada — ancora com a loja real, largura total, fora do LCP */}
+      <div className="relative h-40 w-full overflow-hidden border-t border-border md:h-48">
+        <Image
+          src="/fachada.webp"
+          alt="Fachada do ateliê Valdete Costuras em Palhoça - SC"
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"
+        />
+        <span className="absolute bottom-3 left-1/2 -translate-x-1/2 text-sm font-medium text-white/95">
+          Ateliê em Palhoça - SC
+        </span>
       </div>
     </section>
   );
