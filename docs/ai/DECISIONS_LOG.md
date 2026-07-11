@@ -126,6 +126,16 @@
 - **Diferenciais rebuilt as an editorial "ficha" list** after `$impeccable audit` (score 16/20; anti-patterns 1/4). The DEC-019 2×2 card grid tripped two absolute-ban tells at once: *identical card grid* and *numbered scaffolding (01–04) on a non-sequence* (the pillars are parallel attributes, not an ordered flow — that's the "Como funciona" role). Replaced with a definition-list ledger: display-serif term on the left, description on the right, entries separated by dashed vermelho *traço-costura* seams (the red thread literally running through the differentiators). No cards, no numbers; `rg-rise` cascade and `SectionHeader` retained. **Supersede the DEC-019 Diferenciais 2×2 item; DEC-015 stays superseded.**
 **Impact:** `src/components/sections/Hero.tsx`, `src/components/sections/Pillars.tsx`. Verified via `next build` + Playwright screenshots of `#diferenciais` at 1440/390 (no overflow, AA contrast, distinct from "Como funciona").
 
+## DEC-021 — `$impeccable critique` fixes (site inteiro, 33/40)
+**Status:** Approved (developer request, 2026-07-11)
+**Decision:** From a whole-site `$impeccable critique` (33/40 Good; two independent assessments + deterministic detector). Developer chose: reveal-gating first, keep "orçamento na hora" (no published prices → FAQ parked, needs owner facts), full scope incl. polish.
+- **Reveal-gating P1 (conversion + address):** the FinalCta headline/subtitle/CTA and the Location address/hours no longer start at `opacity:0` gated on an IntersectionObserver — the two elements that close a local sale now render visible by default; only the decorative FinalCta seal ring still animates on reveal. Fixes the "blank at the decisive beat on slow/backgrounded loads" risk.
+- **Local-info ergonomics P2:** address/hours bumped `text-sm`→`text-base` and kept always-visible for the Maps-arriving 55+ visitor; map stays behind the "Ver no mapa" toggle (LCP).
+- **Polish:** Testimonials grid `md:grid-cols-3`→`sm:grid-cols-2` (4 quotes now balance 2×2 instead of a 3+1 orphan); `WhatsAppButton` gains an `aria-label` making the "opens WhatsApp" destination explicit to AT.
+- **Deliberately kept:** the knot-settle overshoot `cubic-bezier(0.34,1.4,0.5,1)` (detector `bounce-easing`, `globals.css:307,430`) — it's the documented DEC-015 "gentle settle", sutil and intentional, not a dry pop. Flagged, not changed.
+- **Parked (need owner facts / assets):** real hero photo (CNT-009, `heroImage` still null); price/turnaround + FAQ (developer keeps "orçamento na hora").
+**Impact:** `src/components/sections/FinalCta.tsx`, `src/components/sections/Location.tsx`, `src/components/sections/Testimonials.tsx`, `src/components/WhatsAppButton.tsx`. Snapshot `.impeccable/critique/2026-07-11T18-46-52Z__src-app-page-tsx.md`. Verified via `next build` + Playwright (FinalCta/Location visible with reveals suppressed; Testimonials 2×2).
+
 ## DEC-009 — Tech stack: Next.js + Tailwind
 **Status:** Approved
 **Decision:** Next.js (App Router) + Tailwind + TypeScript. Slight overkill for one page; chosen for SEO, image handling, future growth.

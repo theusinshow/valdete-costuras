@@ -21,7 +21,7 @@ export function Testimonials() {
       />
 
       {testimonials.length > 0 ? (
-        <ul className="mt-12 grid gap-6 md:grid-cols-3">
+        <ul className="mt-12 grid gap-6 sm:grid-cols-2">
           {testimonials.map((t, i) => (
             <Reveal as="li" key={t.author} delay={i * 70}>
               <figure className="h-full rounded-[var(--radius-lg)] border border-border bg-surface p-7">

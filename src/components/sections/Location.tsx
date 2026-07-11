@@ -4,7 +4,6 @@ import Image from "next/image";
 import { site } from "@/lib/content";
 import { Section } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
-import { Reveal } from "@/components/Reveal";
 import { RevealGroup } from "@/components/RevealGroup";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { MapPinIcon, ClockIcon } from "@/components/icons";
@@ -20,14 +19,17 @@ export function Location() {
             title="Onde encontrar a Valdete"
             lead="Atendimento presencial. Passe aqui ou combine pelo WhatsApp."
           />
-          <Reveal delay={80} className="mt-8 space-y-4">
+          {/* Critical local info stays visible by default (impeccable critique
+              P1/P2): address + hours never wait on a scroll-reveal, and read at
+              base size for the Maps-arriving 55+ visitor. */}
+          <div className="mt-8 space-y-4">
             <div className="flex items-start gap-3">
               <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[var(--radius)] bg-surface text-text">
                 <MapPinIcon width={18} height={18} />
               </span>
               <div>
                 <p className="text-sm font-semibold text-text">Endereço</p>
-                <p className="text-sm text-text-muted">{site.location.address}</p>
+                <p className="text-base text-text-muted">{site.location.address}</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
@@ -36,7 +38,7 @@ export function Location() {
               </span>
               <div>
                 <p className="text-sm font-semibold text-text">Horário</p>
-                <p className="text-sm text-text-muted">{site.location.hours}</p>
+                <p className="text-base text-text-muted">{site.location.hours}</p>
               </div>
             </div>
             <div className="pt-2">
@@ -78,7 +80,7 @@ export function Location() {
                 </div>
               )}
             </div>
-          </Reveal>
+          </div>
         </div>
 
         {/* Reveal (DEC-017): the storefront photo settles from 1.04, like a

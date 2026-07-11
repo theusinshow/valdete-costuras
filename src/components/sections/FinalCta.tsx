@@ -13,11 +13,12 @@ export function FinalCta() {
       />
       <div className="container-page relative py-20 text-center md:py-28">
         {/*
-          Reveal (DEC-017): gentle emphasis per MOTION_DIRECTION — the whole
-          band settles from 0.985 while the seal's ring runs its seam once.
+          Conversion climax stays visible by default (impeccable critique P1):
+          the headline, subtitle and CTA never wait on a scroll-reveal. Only the
+          decorative seal ring runs its seam once the band enters view.
         */}
         <RevealGroup>
-          <div className="rg-scale">
+          <div>
             <Monogram size={56} className="cta-seal mx-auto mb-6 text-white/90" />
             <h2 className="mx-auto max-w-2xl text-balance text-3xl font-bold leading-tight tracking-tight text-[color:var(--color-bg)] md:text-5xl">
               {finalCta.title}

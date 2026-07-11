@@ -22,6 +22,8 @@ export function WhatsAppButton({
       href={whatsappUrl(message)}
       target="_blank"
       rel="noopener noreferrer"
+      // A11y hint (impeccable critique): make the leave-site destination explicit
+      aria-label={`${label} — abre uma conversa no WhatsApp`}
       variant={variant}
       size={size}
       className={className}
