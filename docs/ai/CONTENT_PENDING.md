@@ -15,11 +15,10 @@ Relevant content is missing and materially affects implementation and production
 
 ### CNT-002 — Address / neighborhood
 **Type:** Location / local trust
-**Status:** Not received
-**Impact:** Weakens local trust; blocks map embed and `LocalBusiness` SEO.
+**Status:** Received — address, neighborhood/city and `mapsUrl` filled with real values in `src/lib/content.ts`.
+**Impact:** Resolved for copy and map link. `LocalBusiness` structured-data markup (if desired) is still not implemented — track separately if needed.
 **Used in:** Hero subline, location section, footer.
-**Current placeholder:** `[ENDERECO]`, `[BAIRRO/CIDADE]`
-**Requirements:** Full address or at least neighborhood + city; optional map link.
+**Resolution (2026-07-11, DEC-019):** `site.location.address`, `site.location.neighborhoodCity` and `site.location.mapsUrl` (real Google Maps directions link to the place) are set. `src/lib/maps.ts` derives `mapsEmbedUrl()`/`mapsPlaceUrl()` from the real coordinates; the Hero "faixa da fachada" and the Location/Footer map embeds use `fachada.webp` and the real place embed — no more `[ENDERECO]`/`[BAIRRO/CIDADE]` placeholders in this content.
 
 ### CNT-003 — Opening hours
 **Type:** Location info
@@ -55,11 +54,10 @@ Relevant content is missing and materially affects implementation and production
 
 ### CNT-007 — Testimonials
 **Type:** Social proof
-**Status:** Not received (none exist yet)
-**Impact:** Testimonials section stays as placeholder.
+**Status:** Resolved (2026-07-11, DEC-019)
+**Impact:** `#depoimentos` now renders 4 real, developer-approved client quotes (Carma, Rosilda, Nicélia, João) instead of the invitation placeholder.
 **Used in:** #depoimentos
-**Current placeholder:** "Em breve" block.
-**Requirements:** Real client quotes with consent; optional name/initial.
+**Resolution:** `testimonials[]` in `src/lib/content.ts` populated with quote + author for each. The `testimonialsInvite` panel (DEC-018) still exists as a graceful fallback and will reappear automatically if the array is ever emptied.
 
 ### CNT-009 — Hero image
 **Type:** Imagery
