@@ -28,7 +28,8 @@ export function Testimonials() {
                 <blockquote className="text-base leading-relaxed text-text">
                   “{t.quote}”
                 </blockquote>
-                <figcaption className="mt-4 text-sm font-semibold text-text-muted">
+                <figcaption className="mt-5 flex items-center gap-2 text-sm font-semibold text-text">
+                  <span aria-hidden className="h-px w-4 shrink-0 bg-accent/60" />
                   {t.author}
                 </figcaption>
               </figure>

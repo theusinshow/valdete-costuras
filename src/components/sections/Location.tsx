@@ -50,7 +50,7 @@ export function Location() {
                 onClick={() => setShowMap((v) => !v)}
                 aria-expanded={showMap}
                 aria-controls="mapa-valdete"
-                className="inline-flex items-center gap-2 rounded-[var(--radius)] border border-text/15 px-4 py-2 text-sm font-medium text-text transition-colors hover:border-text/40 hover:bg-text/[0.03]"
+                className="inline-flex min-h-11 items-center gap-2 rounded-[var(--radius)] border border-text/15 px-4 py-2 text-sm font-medium text-text transition-colors hover:border-text/40 hover:bg-text/[0.03]"
               >
                 <MapPinIcon width={16} height={16} />
                 {showMap ? "Ocultar mapa" : "Ver no mapa"}
@@ -104,7 +104,7 @@ export function Location() {
                   rel="noopener noreferrer"
                   className="font-medium text-accent-strong hover:underline"
                 >
-                  Ver no mapa
+                  Abrir no Google Maps
                 </a>
               </figcaption>
             )}
