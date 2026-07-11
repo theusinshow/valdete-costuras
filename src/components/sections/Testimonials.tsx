@@ -13,7 +13,11 @@ export function Testimonials() {
     <Section id="depoimentos">
       <SectionHeader
         title="Quem já costurou com a Valdete"
-        lead="Os primeiros depoimentos aparecem aqui em breve."
+        lead={
+          testimonials.length > 0
+            ? "Clientes que já deixaram a roupa no ponto certo com a Valdete."
+            : "Os primeiros depoimentos aparecem aqui em breve."
+        }
       />
 
       {testimonials.length > 0 ? (
