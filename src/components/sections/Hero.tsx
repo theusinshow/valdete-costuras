@@ -93,13 +93,13 @@ export function Hero() {
             </div>
           ) : (
             /*
-              Brand seal (impeccable critique P1) — the signature is framed as a
-              deliberate atelier stamp with the slogan, so the right column reads
-              as an object, not empty space. The signature still sews itself in
-              (see .hero-sig in globals.css): the dotted ring fades in while its
-              seam runs, the "V" settles, "Valdete" writes in, "Costuras" last.
+              Brand signature — free-standing marks (no frame, per re-critique:
+              a bordered box reads "broken" while it sews in). The signature
+              sews itself in on load (see .hero-sig in globals.css): the dotted
+              ring fades in while its seam runs, the "V" settles, "Valdete"
+              writes in, "Costuras" and the slogan breathe in last.
             */
-            <div className="hero-sig flex aspect-[4/5] flex-col items-center justify-center gap-7 rounded-[var(--radius-lg)] border border-border/70 bg-surface/30 px-8 text-accent">
+            <div className="hero-sig flex aspect-[4/5] flex-col items-center justify-center gap-7 text-accent">
               <Monogram size={152} />
               <Wordmark
                 withMonogram={false}
