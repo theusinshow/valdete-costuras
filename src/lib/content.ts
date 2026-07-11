@@ -120,9 +120,10 @@ export const howItWorks = [
 
 // Secondary offer — uniforms / companies (B2B)
 export const companies = {
+  eyebrow: "Trabalho para empresas",
   title: "Uniformes e costura para o seu negócio",
   short:
-    "Produção, ajustes e conserto de uniformes em volume, com padrão e prazo confiáveis.",
+    "Para empresas: produção, ajuste e conserto de uniformes em volume, com padrão e prazo confiáveis e atendimento recorrente.",
   points: [
     "Uniformes e peças sob demanda",
     "Ajustes e consertos em quantidade",
@@ -139,7 +140,28 @@ export const finalCta = {
 
 // Empty until real content arrives (CNT-007) — while empty, the section shows
 // a warm invitation to leave a depoimento via WhatsApp instead of skeletons.
-export const testimonials: { quote: string; author: string }[] = [];
+export const testimonials: { quote: string; author: string }[] = [
+  {
+    quote:
+      "Levo minhas roupas pra Valdete há anos. Faz a bainha certinha e sempre no prazo. Nunca me decepcionou.",
+    author: "Carma",
+  },
+  {
+    quote:
+      "Precisei apertar um vestido em cima da hora e ela resolveu no mesmo dia. Ficou perfeito, como se fosse feito pra mim.",
+    author: "Rosilda",
+  },
+  {
+    quote:
+      "Atendimento de primeira. A Valdete conversa, entende o que você quer, e o preço é justo. Recomendo muito.",
+    author: "Nicélia",
+  },
+  {
+    quote:
+      "Troquei o zíper de duas jaquetas e ficou impecável. Trabalho caprichado e pessoa ótima de lidar.",
+    author: "João",
+  },
+];
 
 export const testimonialsInvite = {
   title: "Sua roupa já passou por aqui?",
