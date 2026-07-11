@@ -110,24 +110,6 @@ export function Hero() {
           )}
         </div>
       </div>
-
-      {/* Faixa da fachada — ancora com a loja real, largura total, fora do LCP */}
-      <div className="relative h-40 w-full overflow-hidden border-t border-border md:h-48">
-        <Image
-          src="/fachada.webp"
-          alt="Fachada do ateliê Valdete Costuras em Palhoça - SC"
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent"
-        />
-        <span className="absolute bottom-3 left-1/2 -translate-x-1/2 text-sm font-medium text-white/95">
-          Ateliê em Palhoça - SC
-        </span>
-      </div>
     </section>
   );
 }
