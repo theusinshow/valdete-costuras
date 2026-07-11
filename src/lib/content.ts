@@ -13,7 +13,8 @@ export const site = {
     neighborhoodCity: "Palhoça - SC", // CNT-002
     address: "R. Pref. Reinoldo Alves, 1348 - Palhoça/SC", // CNT-002
     hours: "Seg a Sex, 08:00 às 12:00 e 13:30 às 18:00", // CNT-003
-    mapsUrl: "", // optional Google Maps link/embed
+    mapsUrl:
+      "https://www.google.com/maps/dir/-27.6131762,-48.6698411/Valdete+Costuras,+R.+Pref.+Reinoldo+Alves,+1348+-+Passa+Vinte,+Palho%C3%A7a+-+SC,+88132-001/@-27.6238423,-48.6695407,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x95273523b13e94d3:0x35003fdf7595a042!2m2!1d-48.674661!2d-27.6349936?entry=ttu",
   },
   yearsExperience: "+30", // CNT-004
   // Hero image — CNT-009. Drop a real atelier photo at /public/hero-atelie.jpg and
