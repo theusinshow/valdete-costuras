@@ -1,12 +1,18 @@
 import { site, nav } from "@/lib/content";
 import { whatsappUrl, waMessages } from "@/lib/whatsapp";
+import { mapsEmbedUrl } from "@/lib/maps";
 import { MapPinIcon, ClockIcon } from "./icons";
-import { Wordmark } from "./Logo";
+import { Wordmark, Monogram } from "./Logo";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-surface-muted">
-      <div className="container-page grid gap-10 py-14 md:grid-cols-3">
+    <footer className="relative overflow-hidden border-t border-border bg-surface-muted">
+      <Monogram
+        aria-hidden
+        size={280}
+        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-text/[0.04]"
+      />
+      <div className="container-page relative z-10 grid gap-10 py-14 md:grid-cols-3">
         <div>
           <div className="text-accent">
             <Wordmark scriptSize={34} />
@@ -52,6 +58,15 @@ export function Footer() {
           >
             Falar no WhatsApp
           </a>
+          <div className="mt-5 overflow-hidden rounded-[var(--radius)] border border-border">
+            <iframe
+              title="Mapa do ateliê Valdete Costuras"
+              src={mapsEmbedUrl()}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="h-40 w-full"
+            />
+          </div>
         </div>
       </div>
 
