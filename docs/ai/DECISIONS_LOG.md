@@ -119,6 +119,13 @@
 - **Footer:** added a lazy `mapsEmbedUrl()` mini-map iframe in the Contato column, and a large (`size={280}`), 4%-opacity centered `Monogram` watermark behind the grid as a quiet brand mark.
 **Impact:** `src/lib/maps.ts` (new), `src/lib/content.ts` (`site.location.mapsUrl`, `companies.eyebrow`, `testimonials`), `src/components/sections/Hero.tsx`, `src/components/ServicesShowcase.tsx`, `src/components/sections/Pillars.tsx`, `src/components/sections/Companies.tsx`, `src/components/sections/Location.tsx`, `src/components/sections/FinalCta.tsx`, `src/components/Footer.tsx`. `StitchTimeline.tsx` orphaned (kept for reuse, still styled by `globals.css`). Verified in production build via Playwright at 375/768/1440; see report `.superpowers/sdd/task-10-report.md`.
 
+## DEC-020 — Post-DEC-019 corrections (hero faixa removed, Diferenciais → editorial ficha)
+**Status:** Approved (developer request, 2026-07-11)
+**Decision:** Two follow-up changes after DEC-019 shipped.
+- **Hero faixa da fachada removed** (developer: "não ficou como pensei"). The full-width storefront band under the hero grid was dropped; the enlarged monogram signature panel and the traço-costura trust marks stay. The storefront photo remains in the Localização section. **Supersede the DEC-019 hero-band item.**
+- **Diferenciais rebuilt as an editorial "ficha" list** after `$impeccable audit` (score 16/20; anti-patterns 1/4). The DEC-019 2×2 card grid tripped two absolute-ban tells at once: *identical card grid* and *numbered scaffolding (01–04) on a non-sequence* (the pillars are parallel attributes, not an ordered flow — that's the "Como funciona" role). Replaced with a definition-list ledger: display-serif term on the left, description on the right, entries separated by dashed vermelho *traço-costura* seams (the red thread literally running through the differentiators). No cards, no numbers; `rg-rise` cascade and `SectionHeader` retained. **Supersede the DEC-019 Diferenciais 2×2 item; DEC-015 stays superseded.**
+**Impact:** `src/components/sections/Hero.tsx`, `src/components/sections/Pillars.tsx`. Verified via `next build` + Playwright screenshots of `#diferenciais` at 1440/390 (no overflow, AA contrast, distinct from "Como funciona").
+
 ## DEC-009 — Tech stack: Next.js + Tailwind
 **Status:** Approved
 **Decision:** Next.js (App Router) + Tailwind + TypeScript. Slight overkill for one page; chosen for SEO, image handling, future growth.
