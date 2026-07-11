@@ -40,8 +40,8 @@ export function ServicesShowcase({ services }: { services: readonly Service[] })
           }
         });
       },
-      // only the row crossing the middle ~10% band counts as active
-      { rootMargin: "-45% 0px -45% 0px", threshold: 0 },
+      // only the row crossing the middle ~2% band counts as active
+      { rootMargin: "-50% 0px -48% 0px", threshold: 0 },
     );
     rowRefs.current.forEach((el) => el && io.observe(el));
     return () => io.disconnect();
@@ -88,7 +88,7 @@ export function ServicesShowcase({ services }: { services: readonly Service[] })
                 <div className="min-w-0 flex-1">
                   <div className="flex items-baseline justify-between gap-4">
                     <h3
-                      className={`text-xl font-medium tracking-tight transition-colors duration-200 group-hover:text-accent-strong ${
+                      className={`text-xl font-medium tracking-tight transition-colors duration-300 group-hover:text-text ${
                         isActive ? "text-accent-strong" : "text-text"
                       }`}
                     >
@@ -98,11 +98,11 @@ export function ServicesShowcase({ services }: { services: readonly Service[] })
                         mobile, hover/focus on desktop). Real text, so the
                         link's purpose is always announced to AT. */}
                     <span
-                      className={`flex shrink-0 items-center gap-1.5 text-sm font-medium text-accent-strong transition-[opacity,transform] duration-200 motion-reduce:transition-none motion-reduce:translate-x-0 group-focus-within:translate-x-0 group-focus-within:opacity-100 group-hover:translate-x-0 group-hover:opacity-100 ${
-                        isActive ? "translate-x-0 opacity-100" : "translate-x-1 opacity-0"
+                      className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border border-accent/40 px-3 py-1 text-xs font-semibold text-accent-strong transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:translate-y-0 group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:translate-y-0 group-hover:opacity-100 ${
+                        isActive ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
                       }`}
                     >
-                      <WhatsAppIcon width={15} height={15} />
+                      <WhatsAppIcon width={14} height={14} />
                       Pedir orçamento
                     </span>
                   </div>
@@ -134,8 +134,8 @@ export function ServicesShowcase({ services }: { services: readonly Service[] })
                 key={service.title}
                 src={service.image}
                 alt={service.alt}
-                className={`absolute inset-0 h-full w-full transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
-                  i === active ? "opacity-100 scale-100" : "opacity-0 scale-[1.03]"
+                className={`absolute inset-0 h-full w-full transition-[opacity,transform] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+                  i === active ? "opacity-100 scale-100" : "opacity-0 scale-[1.015]"
                 }`}
               />
             ))}
