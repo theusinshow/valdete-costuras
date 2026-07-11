@@ -1,3 +1,5 @@
+"use client";
+import { useState } from "react";
 import Image from "next/image";
 import { site } from "@/lib/content";
 import { Section } from "@/components/Section";
@@ -6,8 +8,10 @@ import { Reveal } from "@/components/Reveal";
 import { RevealGroup } from "@/components/RevealGroup";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { MapPinIcon, ClockIcon } from "@/components/icons";
+import { mapsEmbedUrl, mapsPlaceUrl } from "@/lib/maps";
 
 export function Location() {
+  const [showMap, setShowMap] = useState(false);
   return (
     <Section id="localizacao" muted>
       <div className="grid gap-10 md:grid-cols-2 md:items-center">
@@ -38,6 +42,42 @@ export function Location() {
             <div className="pt-2">
               <WhatsAppButton label="Falar no WhatsApp" />
             </div>
+            <div className="pt-4">
+              <button
+                type="button"
+                onClick={() => setShowMap((v) => !v)}
+                aria-expanded={showMap}
+                aria-controls="mapa-valdete"
+                className="inline-flex items-center gap-2 rounded-[var(--radius)] border border-text/15 px-4 py-2 text-sm font-medium text-text transition-colors hover:border-text/40 hover:bg-text/[0.03]"
+              >
+                <MapPinIcon width={16} height={16} />
+                {showMap ? "Ocultar mapa" : "Ver no mapa"}
+              </button>
+              {showMap && (
+                <div
+                  id="mapa-valdete"
+                  className="mt-4 overflow-hidden rounded-[var(--radius-lg)] border border-border"
+                >
+                  <iframe
+                    title="Mapa do ateliê Valdete Costuras"
+                    src={mapsEmbedUrl()}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="aspect-[16/10] w-full"
+                  />
+                  <div className="border-t border-border bg-surface/60 px-4 py-2 text-center">
+                    <a
+                      href={mapsPlaceUrl()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-medium text-accent-strong hover:underline"
+                    >
+                      Abrir no Google Maps
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
           </Reveal>
         </div>
 
@@ -57,7 +97,7 @@ export function Location() {
             {site.location.mapsUrl && (
               <figcaption className="border-t border-border bg-surface/60 px-4 py-3 text-center text-sm">
                 <a
-                  href={site.location.mapsUrl}
+                  href={mapsPlaceUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-medium text-accent-strong hover:underline"
