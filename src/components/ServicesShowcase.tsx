@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { ServiceImage } from "./ServiceImage";
 import { RevealGroup } from "./RevealGroup";
+import { WhatsAppIcon } from "./icons";
+import { whatsappUrl, waServiceMessage } from "@/lib/whatsapp";
 
 type Service = {
   title: string;
@@ -67,7 +69,15 @@ export function ServicesShowcase({ services }: { services: readonly Service[] })
                 className="rg-drawx absolute inset-x-0 top-0 h-px bg-border"
                 style={d(i * 70)}
               />
-              <div className="rg-rise flex items-start gap-5" style={d(i * 70 + 60)}>
+              {/* Whole row converts — per-service pre-filled WhatsApp message */}
+              <a
+                href={whatsappUrl(waServiceMessage(service.title))}
+                target="_blank"
+                rel="noopener noreferrer"
+                onFocus={() => setActive(i)}
+                className="rg-rise flex items-start gap-5 rounded-[var(--radius-sm)]"
+                style={d(i * 70 + 60)}
+              >
                 <span
                   className={`font-display text-sm tabular-nums transition-colors duration-200 ${
                     isActive ? "text-accent" : "text-text-muted"
@@ -76,13 +86,26 @@ export function ServicesShowcase({ services }: { services: readonly Service[] })
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div className="min-w-0 flex-1">
-                  <h3
-                    className={`text-xl font-medium tracking-tight transition-colors duration-200 group-hover:text-accent-strong ${
-                      isActive ? "text-accent-strong" : "text-text"
-                    }`}
-                  >
-                    {service.title}
-                  </h3>
+                  <div className="flex items-baseline justify-between gap-4">
+                    <h3
+                      className={`text-xl font-medium tracking-tight transition-colors duration-200 group-hover:text-accent-strong ${
+                        isActive ? "text-accent-strong" : "text-text"
+                      }`}
+                    >
+                      {service.title}
+                    </h3>
+                    {/* Affordance — rides the active row (scroll-spy on
+                        mobile, hover/focus on desktop). Real text, so the
+                        link's purpose is always announced to AT. */}
+                    <span
+                      className={`flex shrink-0 items-center gap-1.5 text-sm font-medium text-accent-strong transition-[opacity,transform] duration-200 motion-reduce:transition-none motion-reduce:translate-x-0 group-focus-within:translate-x-0 group-focus-within:opacity-100 group-hover:translate-x-0 group-hover:opacity-100 ${
+                        isActive ? "translate-x-0 opacity-100" : "translate-x-1 opacity-0"
+                      }`}
+                    >
+                      <WhatsAppIcon width={15} height={15} />
+                      Pedir orçamento
+                    </span>
+                  </div>
                   <p className="mt-1 text-sm leading-relaxed text-text-muted">
                     {service.short}
                   </p>
@@ -93,7 +116,7 @@ export function ServicesShowcase({ services }: { services: readonly Service[] })
                     className="mt-4 aspect-[16/10] w-full rounded-[var(--radius)] border border-border lg:hidden"
                   />
                 </div>
-              </div>
+              </a>
             </li>
           );
         })}

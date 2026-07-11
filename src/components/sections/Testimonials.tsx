@@ -1,16 +1,19 @@
-import { testimonials } from "@/lib/content";
+import { testimonials, testimonialsInvite } from "@/lib/content";
 import { Section } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Reveal } from "@/components/Reveal";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { waMessages } from "@/lib/whatsapp";
 
 export function Testimonials() {
-  // Hidden entirely while empty would also be valid; we keep a light, honest
-  // "em breve" so the page reads as complete. CNT-007.
+  // While empty (CNT-007), the section earns its place by inviting the first
+  // depoimentos instead of reserving visual space with skeletons — grey bars
+  // read as "failed to load" and "no clients yet" right at the trust moment.
   return (
     <Section id="depoimentos">
       <SectionHeader
         title="Quem já costurou com a Valdete"
-        lead="Espaço reservado para os primeiros depoimentos."
+        lead="Os primeiros depoimentos aparecem aqui em breve."
       />
 
       {testimonials.length > 0 ? (
@@ -29,28 +32,27 @@ export function Testimonials() {
           ))}
         </ul>
       ) : (
-        /* No motion while empty (MOTION_DIRECTION) — the placeholder is
-           furniture, not content; animating it would draw attention to it. */
-        <div className="mt-12">
-          <div className="grid gap-6 md:grid-cols-3">
-            {Array.from({ length: 3 }).map((_, i) => (
-              <div
-                key={i}
-                className="rounded-[var(--radius-lg)] border border-dashed border-border bg-surface-muted/40 p-7"
-              >
-                <div className="h-2 w-16 rounded-full bg-border" />
-                <div className="mt-4 space-y-2">
-                  <div className="h-2 w-full rounded-full bg-border" />
-                  <div className="h-2 w-11/12 rounded-full bg-border" />
-                  <div className="h-2 w-3/4 rounded-full bg-border" />
-                </div>
-                <span className="mt-5 block text-xs font-medium uppercase tracking-[0.08em] text-text-muted">
-                  Em breve
-                </span>
-              </div>
-            ))}
+        /* Warm invitation — turns the empty state into engagement while
+           staying honest (no fake proof). Secondary button on purpose: this
+           ask must not compete with the conversion CTAs around it. */
+        <Reveal className="mt-12">
+          <div className="flex flex-col items-start gap-6 rounded-[var(--radius-lg)] border border-border bg-surface p-8 sm:flex-row sm:items-center sm:justify-between sm:gap-10 sm:p-10">
+            <div className="max-w-md">
+              <p className="font-display text-2xl font-semibold tracking-tight">
+                {testimonialsInvite.title}
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-text-muted md:text-base">
+                {testimonialsInvite.short}
+              </p>
+            </div>
+            <WhatsAppButton
+              label={testimonialsInvite.ctaLabel}
+              message={waMessages.testimonial}
+              variant="secondary"
+              className="shrink-0"
+            />
           </div>
-        </div>
+        </Reveal>
       )}
     </Section>
   );

@@ -15,4 +15,11 @@ export const waMessages = {
   general: "Olá! Vim pelo site e gostaria de fazer um ajuste/conserto de roupa.",
   companies:
     "Olá! Vim pelo site e gostaria de um orçamento de uniformes para empresa.",
+  testimonial:
+    "Olá! Já fui cliente da Valdete Costuras e quero deixar meu depoimento.",
 } as const;
+
+/** Pre-filled message for a specific service row (e.g. "Troca de zíper"). */
+export function waServiceMessage(title: string): string {
+  return `Olá! Vim pelo site e gostaria de um orçamento para: ${title}.`;
+}

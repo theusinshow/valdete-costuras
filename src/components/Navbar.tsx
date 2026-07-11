@@ -124,11 +124,12 @@ export function Navbar() {
 
         {/* Right cluster — WhatsApp CTA (desktop) + mobile toggle */}
         <div className="flex items-center justify-self-end gap-2">
-          <WhatsAppButton
-            label="WhatsApp"
-            size="md"
-            className="hidden md:inline-flex"
-          />
+          {/* Wrapper hides it — Button's own `inline-flex` would beat a
+              `hidden` utility passed via className (same specificity, later
+              in the cascade). Mobile relies on the drawer + floating CTAs. */}
+          <div className="hidden md:block">
+            <WhatsAppButton label="WhatsApp" size="md" />
+          </div>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}

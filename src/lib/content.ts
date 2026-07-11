@@ -136,5 +136,13 @@ export const finalCta = {
   ctaLabel: "Falar no WhatsApp",
 } as const;
 
-// Empty until real content arrives (CNT-007) — render "em breve".
+// Empty until real content arrives (CNT-007) — while empty, the section shows
+// a warm invitation to leave a depoimento via WhatsApp instead of skeletons.
 export const testimonials: { quote: string; author: string }[] = [];
+
+export const testimonialsInvite = {
+  title: "Sua roupa já passou por aqui?",
+  short:
+    "Conte como foi pelo WhatsApp — seu depoimento aparece aqui e ajuda outros clientes a conhecerem o trabalho da Valdete.",
+  ctaLabel: "Deixar meu depoimento",
+} as const;

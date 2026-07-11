@@ -34,6 +34,13 @@ export function RevealGroup({
     }
     const el = ref.current;
     if (!el) return;
+    // Tall groups (e.g. the ~1900px services list) can never have 18% of
+    // their height inside the viewport, so anchor jumps would land on hidden
+    // content. Clamp so ~30% of a viewport's worth of the group is enough.
+    const ratio =
+      el.offsetHeight > 0
+        ? Math.min(threshold, (0.3 * window.innerHeight) / el.offsetHeight)
+        : threshold;
     const io = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -41,7 +48,7 @@ export function RevealGroup({
           io.disconnect();
         }
       },
-      { threshold, rootMargin: "0px 0px -8% 0px" },
+      { threshold: ratio, rootMargin: "0px 0px -8% 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
