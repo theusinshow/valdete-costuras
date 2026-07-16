@@ -137,6 +137,17 @@
 - **Parked (owner decision):** price/turnaround + FAQ — developer keeps "orçamento na hora" (cost depends on garment/fabric/style; no static numbers).
 **Impact:** `src/components/sections/Hero.tsx`, `src/components/sections/FinalCta.tsx`, `src/components/sections/Location.tsx`, `src/components/sections/Testimonials.tsx`, `src/components/WhatsAppButton.tsx`. Snapshot `.impeccable/critique/2026-07-11T18-46-52Z__src-app-page-tsx.md`. Verified via `next build` + Playwright (FinalCta/Location visible with reveals suppressed; Testimonials 2×2; hero seal at 1440).
 
+## DEC-022 — OG/share image: Linho canvas, not the red-background logo
+**Status:** Approved (developer request, 2026-07-16 — "quando compartilho o site fica vermelho estourado")
+**Decision:** The WhatsApp link preview rendered as a blown-out red block. Three compounding causes, all fixed:
+- **Wrong art.** `og:image` pointed at `/brand/logo-principal-fundo-vermelho.png` — the logo *on* a flat `#C4302E` field. At card size that is a wall of vermelho, violating the DESIGN_SYSTEM rule that the red is a *voice*, not a surface.
+- **No declared dimensions.** Without `og:image:width`/`height`, WhatsApp falls back to its small **square** thumbnail layout, which center-crops the source — and the center of that art was the flat red. Declaring `1200x630` (1.91:1) is what unlocks the large card.
+- **No `metadataBase`.** `og:image` resolved relative; crawlers require an absolute URL. Added `site.url` (`https://www.valdetecosturas.com.br`) to `content.ts` as the single source, wired to `metadataBase`. Also clears the long-standing Next warning flagged in the DEC-021 critique snapshot.
+**New asset:** `/public/brand/og-image.png` — 1200×630, Linho `#FBF6F2` canvas, the vermelho logo (dotted-V monogram + script wordmark + traço-costura) contained at ~430px tall and centered, with a 10px vermelho band on the bottom edge as the single accent. No text baked in: the WhatsApp/Facebook card already renders `og:title` + `og:description` beside the image, so repeating copy would be redundant *and* unreadable at thumbnail scale. The light canvas also means a scraper that squares the crop anyway lands on the legible wordmark, not on flat red — the layout degrades gracefully either way.
+**Regenerate:** `node scripts/make-og-image.mjs` (uses `sharp`, resolved from `next`'s transitive install — not a declared dependency; if it ever goes missing, `npm i -D sharp`).
+**Also added:** `twitter:card = summary_large_image` + `og:url`/`og:site_name`, so the same card holds outside Meta's scrapers.
+**Impact:** `src/app/layout.tsx`, `src/lib/content.ts` (`site.url`), `public/brand/og-image.png` (new), `scripts/make-og-image.mjs` (new). Verified via `next build` (no `metadataBase` warning) + `next start` and curl of the rendered `<head>`: absolute `og:image`, `width=1200`, `height=630`, and the asset serving `200 image/png` (26KB — well under scraper size limits). **Note:** WhatsApp caches previews aggressively; the old red card will persist until re-scraped (see report).
+
 ## DEC-009 — Tech stack: Next.js + Tailwind
 **Status:** Approved
 **Decision:** Next.js (App Router) + Tailwind + TypeScript. Slight overkill for one page; chosen for SEO, image handling, future growth.

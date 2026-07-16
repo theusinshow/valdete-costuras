@@ -27,6 +27,7 @@ const alexBrush = Alex_Brush({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: `${site.name} — Ajustes e consertos de roupa`,
   description:
     "Ajustes e consertos de roupa em Palhoça - SC, rápido e bem feito. Bainha, zíper, ajuste de peças e uniformes para empresas. Fale no WhatsApp.",
@@ -43,7 +44,32 @@ export const metadata: Metadata = {
       "Ajustes e consertos de roupa, rápido e bem feito. Fale no WhatsApp.",
     type: "website",
     locale: "pt_BR",
-    images: [{ url: "/brand/logo-principal-fundo-vermelho.png" }],
+    url: site.url,
+    siteName: site.name,
+    /*
+      1200x630 (1.91:1) on the Linho canvas — NOT the red-background logo. Two
+      reasons (DEC-022): the red art filled the whole card with flat #C4302E, and
+      without explicit width/height WhatsApp falls back to its small square
+      thumbnail, which center-crops the source. Declaring the dimensions is what
+      unlocks the large card; the light canvas is what keeps the crop legible if
+      a scraper squares it anyway. Regenerate: see docs/ai/DECISIONS_LOG.md DEC-022.
+    */
+    images: [
+      {
+        url: "/brand/og-image.png",
+        width: 1200,
+        height: 630,
+        type: "image/png",
+        alt: `${site.name} — ${site.slogan}`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — Ajustes e consertos de roupa`,
+    description:
+      "Ajustes e consertos de roupa, rápido e bem feito. Fale no WhatsApp.",
+    images: ["/brand/og-image.png"],
   },
 };
 

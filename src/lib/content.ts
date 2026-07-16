@@ -7,6 +7,9 @@
 export const site = {
   name: "Valdete Costuras",
   slogan: "Sua roupa no ponto certo.", // CNT-008
+  // Canonical origin — required by Next `metadataBase` so og:image resolves to an
+  // absolute URL. Crawlers (WhatsApp, Facebook) reject relative image paths.
+  url: "https://www.valdetecosturas.com.br",
   // WhatsApp number in international format, digits only: 55DDNNNNNNNNN — CNT-001
   whatsapp: "5548988106584",
   location: {
