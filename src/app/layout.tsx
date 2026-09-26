@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Cormorant_Garamond, Jost, Alex_Brush } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/content";
@@ -104,6 +105,17 @@ export default function RootLayout({
           }}
         />
         {children}
+        {/* Google Analytics 4 — loaded after hydration to protect Core Web Vitals */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-MBYBDLPM2K"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MBYBDLPM2K');`}
+        </Script>
       </body>
     </html>
   );

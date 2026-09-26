@@ -157,6 +157,11 @@
 - **Not marked:** no `primary-cta` (every CTA is WhatsApp, and one role per element — `whatsapp_click` wins); no phone/form (none on the site); nav anchor links; embedded map iframes (clicks inside don't reach the page).
 **Impact:** `src/app/layout.tsx`, `src/components/{Section,WhatsAppButton,FloatingWhatsApp,Navbar,Footer,ServicesShowcase}.tsx`, `src/components/sections/*`. Verified via `next build` (snippet in `<head>` of `/` and `/_not-found`) + dev run with `data-debug` (9 sections, 17 interactions, 0 forms; debug flag removed).
 
+## DEC-024 — Google Analytics 4 (gtag.js)
+**Status:** Approved (developer request, 2026-09-26)
+**Decision:** GA4 property `G-MBYBDLPM2K` installed in the root layout via `next/script` with `strategy="afterInteractive"` (loads after hydration, off the critical path — protects LCP/INP), covering every route. Runs alongside Coded Tracker (DEC-023); no custom GA events yet — page views only. No new dependency (`@next/third-parties` not used).
+**Impact:** `src/app/layout.tsx`.
+
 ## DEC-009 — Tech stack: Next.js + Tailwind
 **Status:** Approved
 **Decision:** Next.js (App Router) + Tailwind + TypeScript. Slight overkill for one page; chosen for SEO, image handling, future growth.
