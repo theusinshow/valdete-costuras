@@ -10,7 +10,7 @@ const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
 
 export function Companies() {
   return (
-    <Section id="empresas">
+    <Section id="empresas" cmSection="companies">
       {/*
         Reveal (DEC-017): the dark card settles in (0.985 → 1), then each
         point is stitched on — red knot pops, its line rises — ending on the CTA.
@@ -63,6 +63,7 @@ export function Companies() {
                   label={companies.ctaLabel}
                   message={waMessages.companies}
                   size="lg"
+                  cmId="companies-whatsapp"
                 />
               </div>
             </div>

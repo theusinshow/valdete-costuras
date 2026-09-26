@@ -10,7 +10,7 @@ const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
 
 export function HowItWorks() {
   return (
-    <Section id="como-funciona" muted space="tight">
+    <Section id="como-funciona" muted space="tight" cmSection="process">
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <Reveal>
           <h2 className="max-w-md text-[clamp(1.75rem,3.5vw,2.75rem)] font-semibold leading-tight tracking-tight">
@@ -18,7 +18,7 @@ export function HowItWorks() {
           </h2>
         </Reveal>
         <Reveal delay={80}>
-          <WhatsAppButton label={hero.ctaLabel} />
+          <WhatsAppButton label={hero.ctaLabel} cmId="process-whatsapp" />
         </Reveal>
       </div>
 

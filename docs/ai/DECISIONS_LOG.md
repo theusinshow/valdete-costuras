@@ -148,6 +148,15 @@
 **Also added:** `twitter:card = summary_large_image` + `og:url`/`og:site_name`, so the same card holds outside Meta's scrapers.
 **Impact:** `src/app/layout.tsx`, `src/lib/content.ts` (`site.url`), `public/brand/og-image.png` (new), `scripts/make-og-image.mjs` (new). Verified via `next build` (no `metadataBase` warning) + `next start` and curl of the rendered `<head>`: absolute `og:image`, `width=1200`, `height=630`, and the asset serving `200 image/png` (26KB — well under scraper size limits). **Note:** WhatsApp caches previews aggressively; the old red card will persist until re-scraped (see report).
 
+## DEC-023 — Coded Tracker analytics + semantic markup
+**Status:** Approved (developer request, 2026-09-26)
+**Decision:** Coded Tracker loaded once, `defer`, in the root layout `<head>` (covers every route). Instrumentation is attribute-only (`data-cm-*`); no visible design, copy or behaviour change, and no attributes on inputs (the site has no forms).
+- **Sections** (`data-cm-section`): `hero`, `services`, `differentiators`, `process`, `companies`, `social-proof`, `location`, `contact` (FinalCta band), `footer`. Wired via a `cmSection` prop on `Section`.
+- **WhatsApp** (`data-cm-role="whatsapp"` + `data-cm-id`): `nav-whatsapp`, `nav-drawer-whatsapp`, `hero-whatsapp`, `services-quote`, `service-1`…`service-6` (by list position), `process-whatsapp`, `companies-whatsapp`, `testimonial-invite` (empty state only), `location-whatsapp`, `final-whatsapp`, `footer-whatsapp`, `floating-whatsapp`. Wired via a `cmId` prop on `WhatsAppButton`.
+- **Map** (`data-cm-role="map"` → `route_click`): `location-map-open`, `location-photo-map-open`. The "Ver no mapa" toggle is a custom event `map.toggle_click`.
+- **Not marked:** no `primary-cta` (every CTA is WhatsApp, and one role per element — `whatsapp_click` wins); no phone/form (none on the site); nav anchor links; embedded map iframes (clicks inside don't reach the page).
+**Impact:** `src/app/layout.tsx`, `src/components/{Section,WhatsAppButton,FloatingWhatsApp,Navbar,Footer,ServicesShowcase}.tsx`, `src/components/sections/*`. Verified via `next build` (snippet in `<head>` of `/` and `/_not-found`) + dev run with `data-debug` (9 sections, 17 interactions, 0 forms; debug flag removed).
+
 ## DEC-009 — Tech stack: Next.js + Tailwind
 **Status:** Approved
 **Decision:** Next.js (App Router) + Tailwind + TypeScript. Slight overkill for one page; chosen for SEO, image handling, future growth.

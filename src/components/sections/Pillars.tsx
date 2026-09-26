@@ -9,7 +9,7 @@ const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
 
 export function Pillars() {
   return (
-    <Section id="diferenciais" space="normal">
+    <Section id="diferenciais" space="normal" cmSection="differentiators">
       <SectionHeader
         title="Por que a Valdete"
         lead="O que você pode esperar ao deixar sua peça no ateliê."

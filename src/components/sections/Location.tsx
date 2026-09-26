@@ -12,7 +12,7 @@ import { mapsEmbedUrl, mapsPlaceUrl } from "@/lib/maps";
 export function Location() {
   const [showMap, setShowMap] = useState(false);
   return (
-    <Section id="localizacao" muted>
+    <Section id="localizacao" muted cmSection="location">
       <div className="grid gap-10 md:grid-cols-2 md:items-center">
         <div>
           <SectionHeader
@@ -42,7 +42,7 @@ export function Location() {
               </div>
             </div>
             <div className="pt-2">
-              <WhatsAppButton label="Falar no WhatsApp" />
+              <WhatsAppButton label="Falar no WhatsApp" cmId="location-whatsapp" />
             </div>
             <div className="pt-4">
               <button
@@ -50,6 +50,8 @@ export function Location() {
                 onClick={() => setShowMap((v) => !v)}
                 aria-expanded={showMap}
                 aria-controls="mapa-valdete"
+                data-cm-event="map.toggle_click"
+                data-cm-id="location-map-toggle"
                 className="inline-flex min-h-11 items-center gap-2 rounded-[var(--radius)] border border-text/15 px-4 py-2 text-sm font-medium text-text transition-colors hover:border-text/40 hover:bg-text/[0.03]"
               >
                 <MapPinIcon width={16} height={16} />
@@ -72,6 +74,8 @@ export function Location() {
                       href={mapsPlaceUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
+                      data-cm-role="map"
+                      data-cm-id="location-map-open"
                       className="text-sm font-medium text-accent-strong hover:underline"
                     >
                       Abrir no Google Maps
@@ -102,6 +106,8 @@ export function Location() {
                   href={mapsPlaceUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-cm-role="map"
+                  data-cm-id="location-photo-map-open"
                   className="font-medium text-accent-strong hover:underline"
                 >
                   Abrir no Google Maps

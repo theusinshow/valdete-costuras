@@ -16,6 +16,8 @@ type Props = {
   /** Vertical rhythm — vary across sections so spacing isn't monotone. */
   space?: Space;
   className?: string;
+  /** Coded Tracker section token (data-cm-section). */
+  cmSection?: string;
 };
 
 export function Section({
@@ -24,10 +26,12 @@ export function Section({
   muted = false,
   space = "normal",
   className = "",
+  cmSection,
 }: Props) {
   return (
     <section
       id={id}
+      data-cm-section={cmSection}
       className={`scroll-mt-20 ${spacing[space]} ${muted ? "bg-surface-muted" : ""} ${className}`}
     >
       <div className="container-page">{children}</div>

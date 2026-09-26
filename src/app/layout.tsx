@@ -83,6 +83,14 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${cormorant.variable} ${jost.variable} ${alexBrush.variable} h-full antialiased`}
     >
+      <head>
+        {/* Coded Tracker — semantic events via data-cm-* attributes */}
+        <script
+          defer
+          src="https://web-production-784b1.up.railway.app/tracker/v1.js"
+          data-site="ci_pub_54179f35ee0dfc33b450baeb3a4f41bc"
+        />
+      </head>
       <body className="min-h-full flex flex-col">
         {/*
           Mark that JS is running BEFORE the reveal elements paint. Scroll-reveal

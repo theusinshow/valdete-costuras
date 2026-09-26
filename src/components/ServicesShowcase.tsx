@@ -75,6 +75,8 @@ export function ServicesShowcase({ services }: { services: readonly Service[] })
                 target="_blank"
                 rel="noopener noreferrer"
                 onFocus={() => setActive(i)}
+                data-cm-role="whatsapp"
+                data-cm-id={`service-${i + 1}`}
                 className="rg-rise flex items-start gap-5 rounded-[var(--radius-sm)]"
                 style={d(i * 70 + 60)}
               >

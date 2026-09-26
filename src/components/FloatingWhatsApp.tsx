@@ -44,6 +44,8 @@ export function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Falar no WhatsApp"
+      data-cm-role="whatsapp"
+      data-cm-id="floating-whatsapp"
       className={`group fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-[var(--shadow-lift)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-accent-hover active:scale-95 motion-reduce:transition-none ${
         visible
           ? "opacity-100 scale-100"

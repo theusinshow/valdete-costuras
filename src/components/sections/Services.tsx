@@ -6,7 +6,7 @@ import { ServicesShowcase } from "@/components/ServicesShowcase";
 
 export function Services() {
   return (
-    <Section id="servicos" space="loose">
+    <Section id="servicos" space="loose" cmSection="services">
       {/* Header — heading + lead on the left, CTA anchored right on desktop */}
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <Reveal className="max-w-xl">
@@ -19,7 +19,7 @@ export function Services() {
           </p>
         </Reveal>
         <Reveal delay={80} className="shrink-0">
-          <WhatsAppButton label="Pedir orçamento" />
+          <WhatsAppButton label="Pedir orçamento" cmId="services-quote" />
         </Reveal>
       </div>
 

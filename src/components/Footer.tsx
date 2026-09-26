@@ -6,7 +6,7 @@ import { Wordmark, Monogram } from "./Logo";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-border bg-surface-muted">
+    <footer data-cm-section="footer" className="relative overflow-hidden border-t border-border bg-surface-muted">
       <Monogram
         size={280}
         className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-text/[0.04]"
@@ -53,6 +53,8 @@ export function Footer() {
             href={whatsappUrl(waMessages.general)}
             target="_blank"
             rel="noopener noreferrer"
+            data-cm-role="whatsapp"
+            data-cm-id="footer-whatsapp"
             className="mt-4 inline-block text-sm font-semibold text-accent-strong hover:underline"
           >
             Falar no WhatsApp

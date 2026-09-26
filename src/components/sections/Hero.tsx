@@ -15,7 +15,7 @@ const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden border-b border-border">
+    <section id="top" data-cm-section="hero" className="relative overflow-hidden border-b border-border">
       {/* warm rosé glow, radiating from the corner (manual cover treatment) */}
       <div
         aria-hidden
@@ -55,7 +55,7 @@ export function Hero() {
             style={d(260)}
             className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center"
           >
-            <WhatsAppButton label={hero.ctaLabel} size="lg" />
+            <WhatsAppButton label={hero.ctaLabel} size="lg" cmId="hero-whatsapp" />
             <span className="text-sm text-text-muted">{hero.reassurance}</span>
           </div>
 

@@ -5,7 +5,7 @@ import { Monogram } from "@/components/Logo";
 
 export function FinalCta() {
   return (
-    <section className="relative overflow-hidden bg-text text-[color:var(--color-bg)]">
+    <section data-cm-section="contact" className="relative overflow-hidden bg-text text-[color:var(--color-bg)]">
       {/* faint monogram watermark — perfectly still */}
       <Monogram
         size={340}
@@ -31,6 +31,7 @@ export function FinalCta() {
                 label={finalCta.ctaLabel}
                 size="lg"
                 variant="inverse"
+                cmId="final-whatsapp"
               />
             </div>
           </div>

@@ -8,6 +8,8 @@ type Props = {
   variant?: "primary" | "inverse" | "secondary" | "ghost";
   size?: "md" | "lg";
   className?: string;
+  /** Stable Coded Tracker id (data-cm-id) — several buttons share the role. */
+  cmId?: string;
 };
 
 export function WhatsAppButton({
@@ -16,6 +18,7 @@ export function WhatsAppButton({
   variant = "primary",
   size = "md",
   className,
+  cmId,
 }: Props) {
   return (
     <Button
@@ -27,6 +30,8 @@ export function WhatsAppButton({
       variant={variant}
       size={size}
       className={className}
+      data-cm-role="whatsapp"
+      data-cm-id={cmId}
     >
       <WhatsAppIcon />
       {label}

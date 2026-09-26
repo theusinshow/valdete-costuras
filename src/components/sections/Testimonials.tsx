@@ -10,7 +10,7 @@ export function Testimonials() {
   // depoimentos instead of reserving visual space with skeletons — grey bars
   // read as "failed to load" and "no clients yet" right at the trust moment.
   return (
-    <Section id="depoimentos">
+    <Section id="depoimentos" cmSection="social-proof">
       <SectionHeader
         title="Quem já costurou com a Valdete"
         lead={
@@ -55,6 +55,7 @@ export function Testimonials() {
               message={waMessages.testimonial}
               variant="secondary"
               className="shrink-0"
+              cmId="testimonial-invite"
             />
           </div>
         </Reveal>

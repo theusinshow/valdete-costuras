@@ -128,7 +128,7 @@ export function Navbar() {
               `hidden` utility passed via className (same specificity, later
               in the cascade). Mobile relies on the drawer + floating CTAs. */}
           <div className="hidden md:block">
-            <WhatsAppButton label="WhatsApp" size="md" />
+            <WhatsAppButton label="WhatsApp" size="md" cmId="nav-whatsapp" />
           </div>
           <button
             type="button"
@@ -200,6 +200,8 @@ export function Navbar() {
               onClick={() => setOpen(false)}
               size="lg"
               className="w-full"
+              data-cm-role="whatsapp"
+              data-cm-id="nav-drawer-whatsapp"
             >
               <WhatsAppIcon />
               Falar no WhatsApp
